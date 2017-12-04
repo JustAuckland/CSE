@@ -70,8 +70,22 @@ def grade_calc(percentage):
 #     response = input("Say \"Hello\"")
 
 
-print ("Hello \nWorld")
+# print ("Hello \nWorld")
+#
+#
+# import random
+# print(random.randint(0, 6))
+#
+#
+# def reverse_order():
+#     first_name = input('what is your first name')
+#     last_name = input('what is your last name')
+#     print(reverse_order)
 
 
-import random
-print(random.randint(0, 6))
+def happy_bday(name):
+    print("Happy birthday to you,")
+    print("Happy birthday to you,")
+    print("Happy birthday dear %s") % name
+    print("Happy birthday to you!")
+
