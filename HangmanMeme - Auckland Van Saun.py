@@ -1,15 +1,21 @@
 import random
+import string
 
 """"
 
 Outline of Hangman
 1. Make a word bank - 10 items
 2. Select a random item from the list
-3. Hide the word (use *)
+3. Add the guessed letter to a list of letters_guessed
 4. Reveal the letters if they've been guessed
 5. Create the win condition
 
 """""
+
+
+guessesLeft = 10
+alphabet = list(string.ascii_lowercase)
+lettersGuessed = []
 
 bank = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", "Ashe", "AuelionSol" "Azir", "Bard",
         "Blitzcrank", "Brand", "Braum", "Caitlyn", "Camille", "Cassiopeia", "ChoGath", "Corki", "Darius", "Diana",
@@ -21,10 +27,15 @@ bank = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", "Ashe"
         "Nasus", "Nautilus", "Nidalee", "Nocturne", "Nunu", "Olaf", "Orianna", "Ornn", "Pantheon", "Poppy", "Quinn",
         "Rakan", "Rammus", "RekSai", "Renekton", "Rengar", "Riven", "Rumble", "Ryze", "Sejuani", "Shaco", "Shen",
         "Shyvana", "Singed", "Sion", "Sivir", "Skarner", "Sona", "Soraka", "Swain", "Syndra", "TahmKench", "Taliyah",
-        "Talon", "Taric", "Teemo", "Thresh", "Tristana", "Trundle", "Tryndamere", "TwistedFate","Twitch", "Udyr",
+        "Talon", "Taric", "Teemo", "Thresh", "Tristana", "Trundle", "Tryndamere", "TwistedFate", "Twitch", "Udyr",
         "Urgot", "Varus", "Vayne", "Veigar", "VelKoz", "Vi", "Viktor", "Vladimir", "Volibear", "Warwick", "Wukong",
         "Xayah", "Yasuo", "Yorick", "Zac", "Zed", "Ziggs", "Zilean", "Zoe", "Zyra"]
-word = random.randint(0, 134)
-print(bank[word])
 
+word = random.choice(bank)
+print(word)
 
+response = ""
+while response != "yes":
+        response = input("Are your ready to begin?(Type \"yes\" to continue : ")
+
+while guessesLeft != 0:
