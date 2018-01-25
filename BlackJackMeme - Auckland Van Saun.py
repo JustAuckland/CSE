@@ -23,7 +23,7 @@ ranSuit = 0
 ranSuit2 = 0
 suit = 0
 suit2 = 0
-#gameMeme = 0
+
 
 dealerName = random.randint(1, 6)
 
@@ -40,13 +40,14 @@ if dealerName == 5:
 if dealerName == 6:
     dealerName = "Ruby"
 
+response = ""
+while response != "yes":
+    response = input("Are your ready to begin?(Type \"yes\" to continue : ")
 
-
-if gameMeme == True:
-    print('  Hi!\n  My name is Dealer %s' % dealerName )
+    print('  Hi!\n  My name is Dealer %s' % dealerName)
     name = input('  What\'s yours')
     print('  Nice to meet you %s!' % name)
-    print('  Alright lets get started shall we!')
+    print('  Alright lets get started!')
 
     cardNum = random.randint(1, 13)
     cardNum2 = random.randint(1, 13)
