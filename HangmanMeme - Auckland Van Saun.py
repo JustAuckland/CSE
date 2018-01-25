@@ -41,17 +41,18 @@ while response != "yes":
         response = input("Are your ready to begin?(Type \"yes\" to continue : ")
 
 blank = '_ ' * len(word)
-print()
+print("Your Word is : ")
 print(blank)
 
 while guessesLeft != 10:
         compare = []
         guess = input("Make a guess")
-        guessesLeft += 1
-        lettersGuessed.append(guess)
-        for letter in wordList:
-                if guess == letters:
+        for letter in word:
+                if letter in lettersGuessed:
                         compare.append(guess)
+                        guessesLeft += 1
                 else:
-                        compare.append("_")
-                        print(compare)
+                        compare.append("_ ")
+        print(compare)
+        guess = input("Make a guess")
+        lettersGuessed.append(guess)

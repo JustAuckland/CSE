@@ -44,7 +44,7 @@
       <file leaf-file-name="BlackJackMeme - Auckland Van Saun.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BlackJackMeme - Auckland Van Saun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="846">
+            <state relative-caret-position="1716">
               <caret line="52" column="36" lean-forward="false" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
               <folding />
             </state>
@@ -54,8 +54,8 @@
       <file leaf-file-name="HangmanMeme - Auckland Van Saun.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HangmanMeme - Auckland Van Saun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1374">
-              <caret line="47" column="20" lean-forward="true" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+            <state relative-caret-position="153">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -78,6 +78,9 @@
       <find>(</find>
       <find>[</find>
       <find>]</find>
+      <find>#</find>
+      <find>compare</find>
+      <find>blank</find>
     </findStrings>
     <replaceStrings>
       <replace>'</replace>
@@ -85,6 +88,9 @@
       <replace>ranSuit</replace>
       <replace>)</replace>
       <replace>\</replace>
+      <replace>#</replace>
+      <replace>blank</replace>
+      <replace>compare</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -100,6 +106,7 @@
         <option value="$PROJECT_DIR$/Guess Game - Auckland Van Saun.py" />
         <option value="$PROJECT_DIR$/Notes.py" />
         <option value="$PROJECT_DIR$/BlackJackMeme - Auckland Van Saun.py" />
+        <option value="$PROJECT_DIR$/Test.py" />
         <option value="$PROJECT_DIR$/HangmanMeme - Auckland Van Saun.py" />
       </list>
     </option>
@@ -161,7 +168,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/GoAuc/OneDrive/Documents/GitHub/CSE/BlackJackMeme - Auckland Van Saun.py" />
   </component>
   <component name="RecentsManager">
@@ -236,16 +243,36 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <list size="3">
+    <configuration name="Test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="CSE" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.Notes" />
       <item index="1" class="java.lang.String" itemvalue="Python.BlackJackMeme - Auckland Van Saun" />
       <item index="2" class="java.lang.String" itemvalue="Python.HangmanMeme - Auckland Van Saun" />
+      <item index="3" class="java.lang.String" itemvalue="Python.Test" />
     </list>
     <recent_temporary>
-      <list size="3">
+      <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Python.HangmanMeme - Auckland Van Saun" />
-        <item index="1" class="java.lang.String" itemvalue="Python.BlackJackMeme - Auckland Van Saun" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Notes" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Test" />
+        <item index="2" class="java.lang.String" itemvalue="Python.BlackJackMeme - Auckland Van Saun" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Notes" />
       </list>
     </recent_temporary>
   </component>
@@ -307,14 +334,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Guess Game - Auckland Van Saun.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lucky 7's.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -702,16 +721,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BlackJackMeme - Auckland Van Saun.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="846">
+        <state relative-caret-position="1716">
           <caret line="52" column="36" lean-forward="false" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="13" lean-forward="true" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HangmanMeme - Auckland Van Saun.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1374">
-          <caret line="47" column="20" lean-forward="true" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+        <state relative-caret-position="153">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
