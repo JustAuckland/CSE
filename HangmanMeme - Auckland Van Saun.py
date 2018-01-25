@@ -13,7 +13,7 @@ Outline of Hangman
 """""
 
 
-guessesLeft = 10
+guessesLeft = 0
 alphabet = list(string.ascii_lowercase)
 lettersGuessed = []
 
@@ -32,10 +32,21 @@ bank = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", "Ashe"
         "Xayah", "Yasuo", "Yorick", "Zac", "Zed", "Ziggs", "Zilean", "Zoe", "Zyra"]
 
 word = random.choice(bank)
+word = word.lower()
 print(word)
+wordList = list(word)
 
 response = ""
 while response != "yes":
         response = input("Are your ready to begin?(Type \"yes\" to continue : ")
 
-while guessesLeft != 0:
+while guessesLeft != 10:
+        output = []
+        guess = input("Make a guess")
+        guessesLeft += 1
+        lettersGuessed.append(guess)
+        for letter in wordList:
+                if guess in wordList(letter):
+                        output.append(guess)
+                else:
+                        output.append("*")
