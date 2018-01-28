@@ -1,75 +1,31 @@
-# import sys
-# blackjackMeme = True
-# while blackjackMeme == True:
-# blackjackMeme = False
-# sys.exit()
-
-# cardNum = random.randint(1, 13)
-# ranSuit = random.randint(1, 4)
-
-# if ranSuit == 1:
-#     suit = 'clubs'
-# if ranSuit == 2:
-#     suit = 'spades'
-# if ranSuit == 3:
-#     suit = 'diamonds'
-# if ranSuit == 4:
-#     suit = 'hearts'
-
 import random
-gameMeme = True
 
-ranSuit = 0
-ranSuit2 = 0
-suit = 0
-suit2 = 0
+numBank = ["ace", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"]
+suitBank = ["hearts", "clubs", "diamonds", "spades"]
 
+ranNumP = random.choice(numBank)
+ranSuitP = random.choice(suitBank)
+ranNumP2 = random.choice(numBank)
+ranSuitP2 = random.choice(suitBank)
+ranNumD = random.choice(numBank)
+ranSuitD = random.choice(suitBank)
+ranNumD2 = random.choice(numBank)
+ranSuitD2 = random.choice(suitBank)
 
-dealerName = random.randint(1, 6)
+playerCard1 = ("%s of %s" % (ranNumP, ranSuitP))
+playerCard2 = ("%s of %s" % (ranNumP2, ranSuitP2))
+dealerCard1 = ("%s of %s" % (ranNumD, ranSuitD))
+dealerCard2 = ("%s of %s" % (ranNumD2, ranSuitD2))
 
-if dealerName == 1:
-    dealerName = "Lucas"
-if dealerName == 2:
-    dealerName = "Dan"
-if dealerName == 3:
-    dealerName = "Bob"
-if dealerName == 4:
-    dealerName = "Sydney"
-if dealerName == 5:
-    dealerName = "Aubrey"
-if dealerName == 6:
-    dealerName = "Ruby"
+playerHand = (playerCard1, playerCard2)
+dealerHand = (dealerCard1, dealerCard2)
 
-response = ""
-while response != "yes":
-    response = input("Are your ready to begin?(Type \"yes\" to continue : ")
+bank = 25
 
-    print('  Hi!\n  My name is Dealer %s' % dealerName)
-    name = input('  What\'s yours')
-    print('  Nice to meet you %s!' % name)
-    print('  Alright lets get started!')
-
-    cardNum = random.randint(1, 13)
-    cardNum2 = random.randint(1, 13)
-    ranSuit = random.randint(1, 4)
-    ranSuit2 = random.randint(1, 4)
-
-    if ranSuit == 1:
-        suit = 'clubs'
-    if ranSuit == 2:
-        suit = 'spades'
-    if ranSuit == 3:
-        suit = 'diamonds'
-    if ranSuit == 4:
-        suit = 'hearts'
-
-    if ranSuit2 == 1:
-        suit2 = 'clubs'
-    if ranSuit2 == 2:
-        suit2 = 'spades'
-    if ranSuit2 == 3:
-        suit2 = 'diamonds'
-    if ranSuit2 == 4:
-        suit2 = 'hearts'
-
+input("(Type anything to begin) : ")
+while bank != 0:
+    print("Hi I'm dealer Sarah!\nReady to play?")
+    bet = input("Place your bet (you have %s dollars in your bank)" % bank)
+    bank = bank -
+    print(bank)
 
