@@ -23,7 +23,8 @@ word = word.lower()
 wordList = list(word)
 guess = []
 
-response = input("Type anything to continue : ")
+
+response = input("Type anyhting to begin : ")
 
 while guessesLeft != 10:
         output = []
@@ -31,23 +32,28 @@ while guessesLeft != 10:
         for letter in word:
                 if letter in lettersGuessed:
                         output.append(letter)
-                        guessesLeft -= 1
+
                 else:
                         output.append("_ ")
         if output == wordList:
                 print(word)
                 print("Good job you're an exper!")
                 exit(0)
-        guessesLeft += 1
 
-        end = "".join(output)
-        print(end)
+        oKKo = "".join(output)
+        print(oKKo)
+        guessesLeft += 1
 
         guess = input("Make a guess : ")
         if len(guess) != 1:
                 print("Please guess one letter at a time!")
         elif guess not in 'abcdefghijklmnopqrstuvwxyz':
                 print("Please only guess letters!")
+        for letter in output:
+                if guess == letter in output:
+                        print("You've already guessed this letter")
+                        guessesLeft -= 1
+
         lettersGuessed.append(guess)
 
 print("Ripperoni Pepperoni \nBetter luck next time!")
