@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>HangmanMeme - Auckland Van Saun.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(104,151,187); }
+.s3 { color: rgb(106,135,89); }
+.s4 { color: rgb(128,128,128); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+HangmanMeme - Auckland Van Saun.py</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">import </span><span class="s1">random 
+</span><span class="s0">import </span><span class="s1">string 
+ 
+guessesLeft = </span><span class="s2">10</span><span class="s1"> 
+lettersGuessed = list(string.punctuation + </span><span class="s3">&quot; &quot;</span><span class="s1">) 
+ 
+bank = [</span><span class="s3">&quot;Aatrox&quot;</span><span class="s0">, </span><span class="s3">&quot;Ahri&quot;</span><span class="s0">, </span><span class="s3">&quot;Akali&quot;</span><span class="s0">, </span><span class="s3">&quot;Alistar&quot;</span><span class="s0">, </span><span class="s3">&quot;Amumu&quot;</span><span class="s0">, </span><span class="s3">&quot;Anivia&quot;</span><span class="s0">, </span><span class="s3">&quot;Annie&quot;</span><span class="s0">, </span><span class="s3">&quot;Ashe&quot;</span><span class="s0">, </span><span class="s3">&quot;Aurelion Sol&quot;</span><span class="s0">, </span><span class="s3">&quot;Azir&quot;</span><span class="s0">, </span><span class="s3">&quot;Bard&quot;</span><span class="s0">,</span><span class="s1"> 
+        </span><span class="s3">&quot;Blitzcrank&quot;</span><span class="s0">, </span><span class="s3">&quot;Brand&quot;</span><span class="s0">, </span><span class="s3">&quot;Braum&quot;</span><span class="s0">, </span><span class="s3">&quot;Caitlyn&quot;</span><span class="s0">, </span><span class="s3">&quot;Camille&quot;</span><span class="s0">, </span><span class="s3">&quot;Cassiopeia&quot;</span><span class="s0">, </span><span class="s3">&quot;Cho'Gath&quot;</span><span class="s0">, </span><span class="s3">&quot;Corki&quot;</span><span class="s0">, </span><span class="s3">&quot;Darius&quot;</span><span class="s0">, </span><span class="s3">&quot;Diana&quot;</span><span class="s0">,</span><span class="s1"> 
+        </span><span class="s3">&quot;Dr.Mundo&quot;</span><span class="s0">, </span><span class="s3">&quot;Draven&quot;</span><span class="s0">, </span><span class="s3">&quot;Ekko&quot;</span><span class="s0">, </span><span class="s3">&quot;Elise&quot;</span><span class="s0">, </span><span class="s3">&quot;Evelynn&quot;</span><span class="s0">, </span><span class="s3">&quot;Ezreal&quot;</span><span class="s0">, </span><span class="s3">&quot;Fiddlesticks&quot;</span><span class="s0">, </span><span class="s3">&quot;Fiora&quot;</span><span class="s0">, </span><span class="s3">&quot;Fizz&quot;</span><span class="s0">, </span><span class="s3">&quot;Galio&quot;</span><span class="s0">,</span><span class="s1"> 
+        </span><span class="s3">&quot;Gangplank&quot;</span><span class="s0">, </span><span class="s3">&quot;Garen&quot;</span><span class="s0">, </span><span class="s3">&quot;Gnar&quot;</span><span class="s0">, </span><span class="s3">&quot;Gragas&quot;</span><span class="s0">, </span><span class="s3">&quot;Graves&quot;</span><span class="s0">, </span><span class="s3">&quot;Hecarim&quot;</span><span class="s0">, </span><span class="s3">&quot;Heimerdinger&quot;</span><span class="s0">, </span><span class="s3">&quot;Illaoi&quot;</span><span class="s0">, </span><span class="s3">&quot;Irelia&quot;</span><span class="s0">, </span><span class="s3">&quot;Ivern&quot;</span><span class="s0">,</span><span class="s1"> 
+        </span><span class="s3">&quot;Janna&quot;</span><span class="s0">, </span><span class="s3">&quot;Jarvan IV&quot;</span><span class="s0">, </span><span class="s3">&quot;Jax&quot;</span><span class="s0">, </span><span class="s3">&quot;Jayce&quot;</span><span class="s0">, </span><span class="s3">&quot;Jinx&quot;</span><span class="s0">, </span><span class="s3">&quot;Kalista&quot;</span><span class="s0">, </span><span class="s3">&quot;Karma&quot;</span><span class="s0">, </span><span class="s3">&quot;Karthus&quot;</span><span class="s0">, </span><span class="s3">&quot;Kassadin&quot;</span><span class="s0">, </span><span class="s3">&quot;Katarina&quot;</span><span class="s0">, </span><span class="s3">&quot;Kayle&quot;</span><span class="s0">,</span><span class="s1"> 
+        </span><span class="s3">&quot;Kayn&quot;</span><span class="s0">, </span><span class="s3">&quot;Kennen&quot;</span><span class="s0">, </span><span class="s3">&quot;Kha'Zix&quot;</span><span class="s0">, </span><span class="s3">&quot;Kindred&quot;</span><span class="s0">, </span><span class="s3">&quot;Kled&quot;</span><span class="s0">, </span><span class="s3">&quot;Kog'Maw&quot;</span><span class="s0">, </span><span class="s3">&quot;LeBlanc&quot;</span><span class="s0">, </span><span class="s3">&quot;Lee Sin&quot;</span><span class="s0">, </span><span class="s3">&quot;Leona&quot;</span><span class="s0">, </span><span class="s3">&quot;Lissandra&quot;</span><span class="s0">, </span><span class="s3">&quot;Lucian&quot;</span><span class="s0">,</span><span class="s1"> 
+        </span><span class="s3">&quot;Lulu&quot;</span><span class="s0">, </span><span class="s3">&quot;Lux&quot;</span><span class="s0">, </span><span class="s3">&quot;Malphite&quot;</span><span class="s0">, </span><span class="s3">&quot;Malzahar&quot;</span><span class="s0">, </span><span class="s3">&quot;Maokai&quot;</span><span class="s0">, </span><span class="s3">&quot;Master Yi&quot;</span><span class="s0">, </span><span class="s3">&quot;Miss Fortune&quot;</span><span class="s0">, </span><span class="s3">&quot;Mordekaiser&quot;</span><span class="s0">, </span><span class="s3">&quot;Morgana&quot;</span><span class="s0">, </span><span class="s3">&quot;Nami&quot;</span><span class="s0">,</span><span class="s1"> 
+        </span><span class="s3">&quot;Nasus&quot;</span><span class="s0">, </span><span class="s3">&quot;Nautilus&quot;</span><span class="s0">, </span><span class="s3">&quot;Nidalee&quot;</span><span class="s0">, </span><span class="s3">&quot;Nocturne&quot;</span><span class="s0">, </span><span class="s3">&quot;Nunu&quot;</span><span class="s0">, </span><span class="s3">&quot;Olaf&quot;</span><span class="s0">, </span><span class="s3">&quot;Orianna&quot;</span><span class="s0">, </span><span class="s3">&quot;Ornn&quot;</span><span class="s0">, </span><span class="s3">&quot;Pantheon&quot;</span><span class="s0">, </span><span class="s3">&quot;Poppy&quot;</span><span class="s0">, </span><span class="s3">&quot;Quinn&quot;</span><span class="s0">,</span><span class="s1"> 
+        </span><span class="s3">&quot;Rakan&quot;</span><span class="s0">, </span><span class="s3">&quot;Rammus&quot;</span><span class="s0">, </span><span class="s3">&quot;Rek'Sai&quot;</span><span class="s0">, </span><span class="s3">&quot;Renekton&quot;</span><span class="s0">, </span><span class="s3">&quot;Rengar&quot;</span><span class="s0">, </span><span class="s3">&quot;Riven&quot;</span><span class="s0">, </span><span class="s3">&quot;Rumble&quot;</span><span class="s0">, </span><span class="s3">&quot;Ryze&quot;</span><span class="s0">, </span><span class="s3">&quot;Sejuani&quot;</span><span class="s0">, </span><span class="s3">&quot;Shaco&quot;</span><span class="s0">, </span><span class="s3">&quot;Shen&quot;</span><span class="s0">,</span><span class="s1"> 
+        </span><span class="s3">&quot;Shyvana&quot;</span><span class="s0">, </span><span class="s3">&quot;Singed&quot;</span><span class="s0">, </span><span class="s3">&quot;Sion&quot;</span><span class="s0">, </span><span class="s3">&quot;Sivir&quot;</span><span class="s0">, </span><span class="s3">&quot;Skarner&quot;</span><span class="s0">, </span><span class="s3">&quot;Sona&quot;</span><span class="s0">, </span><span class="s3">&quot;Soraka&quot;</span><span class="s0">, </span><span class="s3">&quot;Swain&quot;</span><span class="s0">, </span><span class="s3">&quot;Syndra&quot;</span><span class="s0">, </span><span class="s3">&quot;Tahm Kench&quot;</span><span class="s0">, </span><span class="s3">&quot;Taliyah&quot;</span><span class="s0">,</span><span class="s1"> 
+        </span><span class="s3">&quot;Talon&quot;</span><span class="s0">, </span><span class="s3">&quot;Taric&quot;</span><span class="s0">, </span><span class="s3">&quot;Teemo&quot;</span><span class="s0">, </span><span class="s3">&quot;Thresh&quot;</span><span class="s0">, </span><span class="s3">&quot;Tristana&quot;</span><span class="s0">, </span><span class="s3">&quot;Trundle&quot;</span><span class="s0">, </span><span class="s3">&quot;Tryndamere&quot;</span><span class="s0">, </span><span class="s3">&quot;Twisted Fate&quot;</span><span class="s0">, </span><span class="s3">&quot;Twitch&quot;</span><span class="s0">, </span><span class="s3">&quot;Udyr&quot;</span><span class="s0">,</span><span class="s1"> 
+        </span><span class="s3">&quot;Urgot&quot;</span><span class="s0">, </span><span class="s3">&quot;Varus&quot;</span><span class="s0">, </span><span class="s3">&quot;Vayne&quot;</span><span class="s0">, </span><span class="s3">&quot;Veigar&quot;</span><span class="s0">, </span><span class="s3">&quot;Vel'Koz&quot;</span><span class="s0">, </span><span class="s3">&quot;Vi&quot;</span><span class="s0">, </span><span class="s3">&quot;Viktor&quot;</span><span class="s0">, </span><span class="s3">&quot;Vladimir&quot;</span><span class="s0">, </span><span class="s3">&quot;Volibear&quot;</span><span class="s0">, </span><span class="s3">&quot;Warwick&quot;</span><span class="s0">, </span><span class="s3">&quot;Wukong&quot;</span><span class="s0">,</span><span class="s1"> 
+        </span><span class="s3">&quot;Xayah&quot;</span><span class="s0">, </span><span class="s3">&quot;Yasuo&quot;</span><span class="s0">, </span><span class="s3">&quot;Yorick&quot;</span><span class="s0">, </span><span class="s3">&quot;Zac&quot;</span><span class="s0">, </span><span class="s3">&quot;Zed&quot;</span><span class="s0">, </span><span class="s3">&quot;Ziggs&quot;</span><span class="s0">, </span><span class="s3">&quot;Zilean&quot;</span><span class="s0">, </span><span class="s3">&quot;Zoe&quot;</span><span class="s0">, </span><span class="s3">&quot;Zyra&quot;</span><span class="s1">] 
+ 
+word = random.choice(bank) 
+ 
+wordList = list(word) 
+guess = [] 
+</span><span class="s4"># response = input(&quot;Type anything to begin : &quot;)</span><span class="s1"> 
+ 
+</span><span class="s0">while </span><span class="s1">guessesLeft != </span><span class="s2">0</span><span class="s1">: 
+        output = [] 
+ 
+        </span><span class="s0">for </span><span class="s1">letter </span><span class="s0">in </span><span class="s1">word: 
+ 
+                </span><span class="s0">if </span><span class="s1">letter.lower() </span><span class="s0">in </span><span class="s1">lettersGuessed: 
+                        output.append(letter) 
+                </span><span class="s0">else</span><span class="s1">: 
+                        output.append(</span><span class="s3">&quot;_&quot;</span><span class="s1">) 
+        </span><span class="s0">if </span><span class="s1">output == wordList: 
+                print(word) 
+                print(</span><span class="s3">&quot;Good job you're an exper!&quot;</span><span class="s1">) 
+                exit(</span><span class="s2">0</span><span class="s1">) 
+ 
+        join = </span><span class="s3">&quot; &quot;</span><span class="s1">.join(output) 
+        print(join) 
+        guess = input(</span><span class="s3">&quot;Make a guess : &quot;</span><span class="s1">).lower() 
+        </span><span class="s0">if </span><span class="s1">guess == word: 
+                guessesLeft -= </span><span class="s2">1</span><span class="s1"> 
+ 
+        </span><span class="s0">if </span><span class="s1">len(guess) != </span><span class="s2">1</span><span class="s1">: 
+                print(</span><span class="s3">&quot;Please guess one letter at a time!&quot;</span><span class="s1">) 
+        </span><span class="s0">elif </span><span class="s1">guess </span><span class="s0">not in </span><span class="s3">'abcdefghijklmnopqrstuvwxyz'</span><span class="s1">: 
+                print(</span><span class="s3">&quot;Please only guess letters!&quot;</span><span class="s1">) 
+ 
+        lettersGuessed.append(guess) 
+ 
+print(</span><span class="s3">&quot;Ripperoni Pepperoni </span><span class="s0">\n</span><span class="s3">Better luck next time!&quot;</span><span class="s1">) 
+</span></pre>
+</body>
+</html>
