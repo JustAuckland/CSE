@@ -44,13 +44,18 @@ def game():
 
                 join = " ".join(output)
                 print(join)
-                print(guesses_left)
+                print("You have %s guesses left" % guesses_left)
                 guess = input("Make a guess : ").lower()
 
-                if guess.lower() in word.lower():
+                if guess.lower() not in word.lower():
                         guesses_left -= 1
-                else:
-                        guesses_left += 0
+
+                if guess.lower() in letters_guessed and guess.lower() in word.lower():
+                        print("You've already guessed this letter")
+
+                if guess.lower() in letters_guessed and guess.lower() not in word.lower():
+                        guesses_left += 1
+                        print("You've already guessed this letter")
 
                 if len(guess) != 1:
                         print("Please guess one letter at a time!")
@@ -69,7 +74,7 @@ def game():
                 else:
                         game()
 
-        else:
+        if output == word_list:
                 end1 = input("Your word was %s\nPress \"yes\" to restart and \"no\" to exit" % word)
                 if end1.lower() == "no" or "n":
                         exit(0)
@@ -77,4 +82,6 @@ def game():
                         "please guess \"Yes\" or \"No\""
                 else:
                         game()
-        print("Ripperoni Pepperoni\n your word was %s" % word)
+
+
+game()
