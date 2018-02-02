@@ -141,3 +141,10 @@
 # strTwo = "ThIs iS a VeRY oDd sEnTenCE"
 # lowercase = strTwo.lower()
 # print(lowercase)
+# Dictionaries - Make up a key: value pair
+dictionary = {'name': 'Lance', 'age': 18, 'height': 6 * 12}
+
+# Accessing from a dictionary
+print(dictionary['name'])
+print(dictionary['age'])
+print(dictionary['height'])

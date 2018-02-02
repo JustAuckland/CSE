@@ -7,7 +7,7 @@ def game():
         
         guesses_left = 10
         letters_guessed = list(string.punctuation + " ")
-
+        game_end = 0
         bank = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", "Ashe", "Aurelion Sol", "Azir", 
                 "Bard", "Blitzcrank", "Brand", "Braum", "Caitlyn", "Camille", "Cassiopeia", "Cho'Gath", "Corki", 
                 "Darius", "Diana", "Dr.Mundo", "Draven", "Ekko", "Elise", "Evelynn", "Ezreal", "Fiddlesticks", "Fiora", 
@@ -40,7 +40,7 @@ def game():
                 if output == word_list:
                         print(word)
                         print("Good job you're an exper!")
-                        exit(0)
+                        break
 
                 join = " ".join(output)
                 print(join)
@@ -72,7 +72,7 @@ def game():
                 elif end.lower() != "yes" or "y":
                         "please guess \"Yes\" or \"No\""
                 else:
-                        game()
+                        game_end += 1
 
         if output == word_list:
                 end1 = input("Your word was %s\nPress \"yes\" to restart and \"no\" to exit" % word)
@@ -81,7 +81,7 @@ def game():
                 elif end1.lower() != "yes" or "y":
                         "please guess \"Yes\" or \"No\""
                 else:
-                        game()
+                        game_end += 1
 
 
 game()
