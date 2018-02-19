@@ -13,7 +13,7 @@ world_map = {
             "SOUTH": "TWOLEGPLACE",
             "NORTH": "LOGS",
             "EAST": "TALLPINES",
-            "WEST": "TWOLEGROAD1"
+            "WEST": "NORTH1"
         }
     },
     "TWOLEGROAD1": {
@@ -56,7 +56,7 @@ world_map = {
         "NAME": "TWOLEG ROAD",
         "DESCRIPTION": "Insert description here",
         "PATHS": {
-            "EAST": "NETALLPINES",
+            "EAST": "NWTALLPINES",
             "NORTH": "TWOLEGROAD6",
             "SOUTH": "TWOLEGROAD4"
         }
@@ -65,8 +65,7 @@ world_map = {
         "NAME": "TWOLEG ROAD",
         "DESCRIPTION": "Insert description here",
         "PATHS": {
-            "EAST": "TWOLEGROAD",
-            "NORTH": "TWOLEGROAD3",
+            "EAST": "TWOLEGROAD7",
             "SOUTH": "TWOLEGROAD5"
         }
     },
@@ -74,10 +73,10 @@ world_map = {
         "NAME": "TWOLEG ROAD",
         "DESCRIPTION": "Insert description here",
         "PATHS": {
-            "EAST": "TWOLEGROAD7",
-            "NORTH": "SANDYHOLLOW",
-            "WEST": "TWOLEGROAD2",
-            "SOUTH": "NETALLPINES"
+            "EAST": "TWOLEGROAD8",
+            "NORTH": "GREATSYCAMORE",
+            "WEST": "TWOLEGROAD6",
+            "SOUTH": "NWTALLPINES"
         }
     },
     "TWOLEGROAD8": {
@@ -92,9 +91,9 @@ world_map = {
         "NAME": "PILE OF LOGS",
         "DESCRIPTION": "Insert description here",
         "PATHS": {
-            "EAST": "TWOLEGROAD",
             "NORTH": "TWOLEGROAD4",
-            "WEST": "TWOLEGROAD3"
+            "WEST": "TWOLEGROAD3",
+            "SOUTH": "TWOLEGROAD"
         }
     },
     "TALLPINES": {
@@ -106,6 +105,220 @@ world_map = {
             "NORTH": "NTALLPINES"
         }
     },
+    "RIVERSIDE": {
+        "NAME": "RIVERSIDE",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "TWOLEGROAD4",
+            "SOUTH": "TWOLEGROAD3",
+            "NORTH": "RIVERSIDE1"
+        }
+    },
+    "NTALLPINES": {
+        "NAME": "NORTH TALLPINES",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "WEST": "NWTALLPINES",
+            "SOUTH": "TALLPINES"
+        }
+    },
+    "NWTALLPINES": {
+        "NAME": "NORTH-WEST TALPINES",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "NTALLPINES",
+            "NORTH": "TWOLEGROAD7",
+            "WEST": "TWOLEGROAD5"
+        }
+    },
+    "SANDYHOLLOW": {
+        "NAME": "SANDY HOLLOW",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "GREATSYCAMORE",
+            "SOUTH": "RIVERSIDE4",
+            "WEST": "RIVERSIDE5"
+        }
+    },
+    "GREATSYCAMORE": {
+        "NAME": "GREAT SYCAMORE",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "SNAKEROCKS",
+            "NORTH": "THUNDERCLANCAMP",
+            "WEST": "SANDYHOLLOW",
+            "SOUTH": "TWOLEGROAD7"
+        }
+    },
+    "SNAKEROCKS": {
+        "NAME": "SNAKEROCKS",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "WEST": "GREATSYCAMORE",
+            "SOUTH": "TWOLEGROAD8"
+        }
+    },
+    "THUNDERCLANCAMP": {
+        "NAME": "THUNDERCLAN CAMP",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "SOUTH": "GREATSYCAMORE"
+        }
+    },
+    "RIVERSIDE1": {
+        "NAME": "RIVERSIDE",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "WEST": "RIVERSIDE2",
+            "SOUTH": "RIVERSIDE"
+        }
+    },
+    "RIVERSIDE2": {
+        "NAME": "RIVERSIDE",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "RIVERSIDE1",
+            "WEST": "SUNNINGROCKS"
+        }
+    },
+    "RIVERSIDE3": {
+        "NAME": "RIVERSIDE",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "RIVERSIDE4",
+            "SOUTH": "SUNNINGROCKS"
+        }
+    },
+    "RIVERSIDE4": {
+        "NAME": "RIVERSIDE",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "NORTH": "SANDYHOLLOW",
+            "WEST": "RIVERSIDE3",
+        }
+    },
+    "SUNNINGROCKS": {
+        "NAME": "SUNNINGROCKS",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "RIVERSIDE2",
+            "NORTH": "RIVERSIDE3",
+            "WEST": "RIVERSIDE6",
+            "SOUTH": "RIVERSIDE7"
+        }
+    },
+    "RIVERSIDE5": {
+        "NAME": "RIVERSIDE",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "SANDYHOLLOW",
+            "WEST": "TWOLEGPATH4"
+        }
+    },
+    "RIVERSIDE6": {
+        "NAME": "RIVERSIDE",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "SUNNINGROCKS",
+            "WEST": "TWOLEGPATH2"
+        }
+    },
+    "RIVERSIDE7": {
+        "NAME": "RIVERSIDE",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "NORTH": "SUNNINGROCKS",
+            "SOUTH": "HILL"
+        }
+    },
+    "HILL": {
+        "NAME": "HILL",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "NORTH": "RIVERSIDE7",
+            "WEST": "HILL1"
+        }
+    },
+    "HILL1": {
+        "NAME": "HILL",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "HILL",
+            "WEST": "RIVERCLANCAMP"
+        }
+    },
+    "RIVERCLANCAMP": {
+        "NAME": "RIVERCLAN CAMP",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "HILL1",
+            "NORTH": "TWOLEGPATH"
+        }
+    },
+    "TWOLEGPATH": {
+        "NAME": "TWOLEG PATH",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "NORTH": "TWOLEGPATH1",
+            "SOUTH": "RIVERCLANCAMP"
+        }
+    },
+    "TWOLEGPATH1": {
+        "NAME": "TWOLEG PATH",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "NORTH": "TWOLEGPATH2",
+            "SOUTH": "TWOLEGPATH"
+        }
+    },
+    "TWOLEGPATH2": {
+        "NAME": "TOLEG PATH",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "NORTH": "TWOLEGBRIDGE",
+            "SOUTH": "TWOLEGPATH1"
+        }
+    },
+    "TWOLEGPATH3": {
+        "NAME": "TWOLEG PATH",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "NORTH": "TWOLEGPATH4",
+            "SOUTH": "TWOLEGBRIDGE"
+        }
+    },
+    "TWOLEGPATH4": {
+        "NAME": "TWOLEG PATH",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "RIVERSIDE5",
+            "NORTH": "TWOLEGPATH5",
+            "SOUTH": "TWOLEGPATH3"
+        }
+    },
+    "TWOLEGPATH5": {
+        "NAME": "TWOLEG PATH",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "OWLTREE",
+            "SOUTH": "TWOLEGPATH4"
+        }
+    },
+    "OWLTREE": {
+        "NAME": "OWLTREE",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "WEST": "TWOLEGPATH5"
+        }
+    },
+    "TWOLEGBRIDGE": {
+        "NAME": "TWOLEG BRIDGE",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "NORTH": "TWOLEGPATH3",
+            "SOUTH": "TWOLEGPATH2"
+        }
+    },
     "TREECUTPLACE": {
         "NAME": "TREECUT PLACE",
         "DESCRIPTION": "Insert desciption here",
@@ -114,7 +327,18 @@ world_map = {
         }
     }
 }
-
+"""
+    "": {
+        "NAME": "",
+        "DESCRIPTION": "Insert description here",
+        "PATHS": {
+            "EAST": "",
+            "NORTH": "",
+            "WEST": "",
+            "SOUTH": ""
+        }
+    },
+"""
 current_node = world_map["TWOLEGPLACE"]
 directions = ["NORTH", "SOUTH", "EAST", "WEST"]
 
