@@ -1,6 +1,6 @@
 def pythagorean(a, b):
-    c = (a * a) + (b * b)
-    answer = (c * 0.5)
+    c = (a ** 2) + (b ** 2)
+    answer = (c ** 0.5)
     return answer
 
 
