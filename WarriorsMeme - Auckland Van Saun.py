@@ -321,7 +321,7 @@ world_map = {
     },
     "TREECUTPLACE": {
         "NAME": "TREECUT PLACE",
-        "DESCRIPTION": "Insert desciption here",
+        "DESCRIPTION": "Insert description here",
         "PATHS": {
             "EAST": "TWOLEGROAD3",
         }
@@ -348,7 +348,7 @@ while True:
     command = input(">_")
     if command == "quit":
         quit(0)
-    if command in directions:
+    if command in directions:       
         try:
             name_of_node = current_node["PATHS"][command]
             current_node = world_map[name_of_node]
