@@ -10,16 +10,10 @@ class Place(object):
         self.up = up
         self.down = down
 
-
     def move(self, direction):
         global current_node
         current_node = globals()[getattr(self, direction)]
 
-
-"""
-west_house = Room("West of House", "north_house")
-north_house = Room("North of House", None)
-"""
 
 
 yourhouse = Place("Your House", "You see a bright red house before you", None, None, "randomtree", "southparksign",
@@ -38,7 +32,9 @@ stonepath = Place("Stone Path", "You see a paved path to your left leading to wh
                   None, "traintracks", "kyleshouse", None, None, None)
 traintracks = Place("Train Tracks", "You see train tracks almost hidden under a trick layer of snow", None, None,
                     "sodosopa", "stonepath", None, None, None)
-sodosopa = Place("Sodosopa", "You see a broken down, olive green house surrounded almost completely by what seems to be"
-                             " a modernized restaurant",
+sodosopa = Place("Sodosopa", "You see a broken down, olive green house, surrounded almost completely by what seems "
+                             "to be a modernized restaurant",
                  None, None, None, "traintracks", "insidekennyshouse", "insidesodosopa", None)
-
+southparksign = Place("SouthPark Sign", "You see a sign that says \"South Park\" \non your left lies a road\n"
+                                        "on the other side of the road you see a bus stop",
+                      None, None, "yourhouse", "busstop", None, None, None)

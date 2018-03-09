@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b62d24a4-d6b4-4ace-843b-bf4fb086ada4" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/World Map OOF - Auckland Van Saun.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Auckland V. - Character.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/WarriorsMeme - Auckland Van Saun.py" afterPath="$PROJECT_DIR$/WarriorsMeme - Auckland Van Saun.py" />
+      <change beforePath="$PROJECT_DIR$/World Map OOF - Auckland Van Saun.py" afterPath="$PROJECT_DIR$/World Map OOF - Auckland Van Saun.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,7 +25,7 @@
       <file leaf-file-name="Notes.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Notes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3135">
+            <state relative-caret-position="0">
               <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
               <folding />
             </state>
@@ -35,8 +35,8 @@
       <file leaf-file-name="WarriorsMeme - Auckland Van Saun.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WarriorsMeme - Auckland Van Saun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11847">
-              <caret line="359" column="0" lean-forward="false" selection-start-line="359" selection-start-column="0" selection-end-line="359" selection-end-column="0" />
+            <state relative-caret-position="450">
+              <caret line="299" column="30" lean-forward="true" selection-start-line="299" selection-start-column="17" selection-end-line="299" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -45,28 +45,18 @@
       <file leaf-file-name="World Map OOF - Auckland Van Saun.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/World Map OOF - Auckland Van Saun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1419">
-              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+            <state relative-caret-position="1320">
+              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Function Notes.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Function Notes.py">
+      <file leaf-file-name="Auckland V. - Character.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Auckland V. - Character.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1221">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PythagoreanTheoremMeme - Auckland Van Saun.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PythagoreanTheoremMeme - Auckland Van Saun.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="1056">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -75,8 +65,18 @@
       <file leaf-file-name="Class Notes.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Class Notes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1914">
+            <state relative-caret-position="0">
               <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Function Notes.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Function Notes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -85,7 +85,7 @@
       <file leaf-file-name="Guess Game - Auckland Van Saun.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Guess Game - Auckland Van Saun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
+            <state relative-caret-position="0">
               <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
@@ -95,7 +95,7 @@
       <file leaf-file-name="BlackJackMeme - Auckland Van Saun.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BlackJackMeme - Auckland Van Saun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1254">
+            <state relative-caret-position="0">
               <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
@@ -105,7 +105,7 @@
       <file leaf-file-name="HangmanMeme - Auckland Van Saun.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HangmanMeme - Auckland Van Saun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="891">
+            <state relative-caret-position="0">
               <caret line="40" column="35" lean-forward="false" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
               <folding>
                 <element signature="e#1#14#0" expanded="true" />
@@ -185,10 +185,11 @@
         <option value="$PROJECT_DIR$/Class Notes.py" />
         <option value="$PROJECT_DIR$/WarriorsMeme - Auckland Van Saun.py" />
         <option value="$PROJECT_DIR$/World Map OOF - Auckland Van Saun.py" />
+        <option value="$PROJECT_DIR$/Auckland V. - Character.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="1290" />
     <option name="y" value="-27" />
     <option name="width" value="1346" />
@@ -231,6 +232,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -242,13 +245,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.project" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/GoAuc/OneDrive/Documents/GitHub/CSE/BlackJackMeme - Auckland Van Saun.py" />
   </component>
   <component name="RecentsManager">
@@ -393,7 +394,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-13" y="-13" width="3866" height="2106" extended-state="6" />
+    <frame x="-13" y="-13" width="3866" height="2106" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11119792" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -429,18 +430,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="25" />
+      <option name="time" value="27" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Lucky 7's.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BlackJackMeme - Auckland Van Saun.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1254">
@@ -762,7 +756,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BlackJackMeme - Auckland Van Saun.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
+        <state relative-caret-position="0">
           <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
         </state>
@@ -770,7 +764,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HangmanMeme - Auckland Van Saun.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="891">
+        <state relative-caret-position="0">
           <caret line="40" column="35" lean-forward="false" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
           <folding>
             <element signature="e#1#14#0" expanded="true" />
@@ -788,57 +782,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Notes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3135">
+        <state relative-caret-position="0">
           <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IfIGetBoredMeme.py" />
-    <entry file="file://$PROJECT_DIR$/Function Notes.py">
+    <entry file="file://$PROJECT_DIR$/PythagoreanTheoremMeme - Auckland Van Saun.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1221">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="132">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Guess Game - Auckland Van Saun.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
+        <state relative-caret-position="0">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Function Notes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Class Notes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1914">
+        <state relative-caret-position="0">
           <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythagoreanTheoremMeme - Auckland Van Saun.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WarriorsMeme - Auckland Van Saun.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11847">
-          <caret line="359" column="0" lean-forward="false" selection-start-line="359" selection-start-column="0" selection-end-line="359" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="299" column="30" lean-forward="true" selection-start-line="299" selection-start-column="17" selection-end-line="299" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Auckland V. - Character.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1056">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/World Map OOF - Auckland Van Saun.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1419">
-          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state relative-caret-position="1320">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
