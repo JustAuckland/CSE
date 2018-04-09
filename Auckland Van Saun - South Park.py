@@ -145,9 +145,41 @@ sodosopa = Place("Sodosopa", "You see a broken down, olive green house, surround
                              "to be a modernized restaurant",
                  None, None, None, "traintracks", "insidekennyshouse", "insidesodosopa", None)
 southparksign = Place("SouthPark Sign", "You see a sign that says \"South Park\" \non your left lies a road\n"
-                                        "beyond road you see a bus stop",
+                                        "beyond the road you see a bus stop",
                       None, None, "yourhouse", "busstop", None, None, None)
 road = Place("Road", "A road blocks your path", None, None, "southparksign", "busstop", None, None, None)
-busstop = Place("Bus Stop", "You see the local elementary school's bus stop", None, None, "road, ")
-jimmyshouse = Place("Jimmy\'s house", "You see a red house", None, None, "busstop", "craigshouse", "insidejimmyshouse",
+busstop = Place("Bus Stop", "You see the local elementary school's bus stop", None, None, "road", "jimmyshouse",
+                None, None, None)
+jimmyshouse = Place("Jimmy\'s house", "You see a red house", None, None, "busstop", "craigshouse", "inside_jimmyshouse",
                     None, None)
+craigshouse = Place("Craig\'s house", "You see a light brown house", None, None, "jimmyshouse", "clydeshouse",
+                    "inside_craigshouse", None, None)
+clydeshouse = Place("Clyde\'s house", "You see a dark brown house", None, None, "craigshouse", "bebeshouse",
+                    "inside_clydeshouse", None, None)
+bebeshouse = Place("Bebe\'s house)", "You see a red house", None, None, "clydeshouse", "communitycenter",
+                   "insidebebeshouse", None, None)
+communitycenter = Place("Community Center", "You see a large, orange multi-purpose building", None, None, "bebeshouse",
+                        "insidecommunitycenter", None, None)
+elementaryschool = Place("South Park Elementary School", "You see a yellow double-storie elementary school building",
+                         "church", None, "insideelementaryschool", None, None)
+church = Place("Church", "You see a wooden steeple", None, "elementaryschool", "policestation", None, "insidechurch",
+               None, None)
+policestation = Place("Police Station", "You see a large black police station", None, None,"cityhall", "church",
+                      "insidepolicestation", None, None)
+cityhall = Place("City Hall", "You see an authentic stone building that looks important", None, None, "townsquare",
+                 "policestation", "insidecityhall", None, None)
+townsquare = Place("Town Square", "You see a small rectangular park with a few trees and benches", None, None,
+                   "postoffice", "cityhall", "insidetownsquare", None, None)
+postoffice =
+bank =
+tacoshop =
+playground =
+Alshouse =
+coffeeshop =
+theatre =
+tokenshouse =
+mall =
+kfc =
+chinesefood =
+gunstore =
+bar =
