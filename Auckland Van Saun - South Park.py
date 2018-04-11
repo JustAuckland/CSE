@@ -103,6 +103,12 @@ steve.attack(enemy)
 enemy.attack(steve)
 rat = Character("Rat", "Smelly Sewer Rat", None, 20, 5, 0)
 gnome = Character("Underpants Gnome", "He gon take your underwear!", None, 50, 10, 5)
+cartman = Character("Eric Cartman", "A fat kid your age, wearing a red coat and a blue poofball hood", None,
+                    125, 20)
+stan = Character("Stan Marsh", "A kid your age, wearing a brown coat with a blue hat", None, 100, 25)
+kyle = Character("Kyle Broflovski", "A kid your age wearing a green coat with an orange hat", None, 100, 30)
+kenny= Character("Kenny McCormick", "")
+
 
 
 # World Map
@@ -158,28 +164,47 @@ clydeshouse = Place("Clyde\'s house", "You see a dark brown house", None, None, 
                     "inside_clydeshouse", None, None)
 bebeshouse = Place("Bebe\'s house)", "You see a red house", None, None, "clydeshouse", "communitycenter",
                    "insidebebeshouse", None, None)
-communitycenter = Place("Community Center", "You see a large, orange multi-purpose building", None, None, "bebeshouse",
-                        "insidecommunitycenter", None, None)
+communitycenter = Place("Community Center", "You see a large, orange multi-purpose building", "policestation", None,
+                        "bebeshouse", "elementaryschool", "insidecommunitycenter", None, None)
 elementaryschool = Place("South Park Elementary School", "You see a yellow double-storie elementary school building",
-                         "church", None, "insideelementaryschool", None, None)
+                         "church", None, "communitycenter", None, "insideelementaryschool", None, None)
 church = Place("Church", "You see a wooden steeple", None, "elementaryschool", "policestation", None, "insidechurch",
                None, None)
-policestation = Place("Police Station", "You see a large black police station", None, None,"cityhall", "church",
+policestation = Place("Police Station", "You see a large black police station", None, None, "cityhall", "church",
                       "insidepolicestation", None, None)
 cityhall = Place("City Hall", "You see an authentic stone building that looks important", None, None, "townsquare",
                  "policestation", "insidecityhall", None, None)
 townsquare = Place("Town Square", "You see a small rectangular park with a few trees and benches", None, None,
                    "postoffice", "cityhall", "insidetownsquare", None, None)
-postoffice =
-bank =
-tacoshop =
-playground =
-Alshouse =
-coffeeshop =
-theatre =
-tokenshouse =
-mall =
-kfc =
-chinesefood =
-gunstore =
-bar =
+postoffice = Place("Post Office", "You see a small blue and white post office", None, None, "bank", "townsquare",
+                   "insidepostoffice", None, None)
+bank = Place("South Park Bank", "You see a short, dark green building", None, None, "tacoshop", "postoffice",
+             "insidebank", None, None)
+tacoshop = Place("Taco Stand", "You see a white and red taco food truck", None, None, "playground", "bank",
+                 "insidetacoshop", None, None)
+playground = Place("playground", "you see a basketball court and a small playground to th right", None, None,
+                   "alshouse", "tacoshop", "insideplayground", None, None)
+alshouse = Place("Al\'s House", "You see a bright red house", "coffeeshop", None, None, "playground", "insidealshouse",
+                 None, None)
+coffeeshop = Place("Tweal Bro\'s Coffee", "You see a small tan building with a coffee sign", None, "alshouse", None,
+                   "theatre", "insidecoffeeshop", None, None)
+theatre = Place("Movie Theatre", "You see a large orange and red theatre", None, None, "coffeeshop", "tokenshouse",
+                "insidetheatre", None, None)
+tokenshouse = Place("Token\'s House", "You see a very large fenced-off light brown manor", None, None, "theatre",
+                    "mall", "insidetokenshouse", None, None)
+mall = Place("South Park Mall", "You see a very large light-blue mall under construction", None, None, "tokenshouse",
+             "kfc", None, None, None)
+kfc = Place("South Park Fried Chicken", "You see a fried chicken fast-food restaurant", None, None, "mall",
+            "chineesefood", "insidekfc", None, None)
+chinesefood = Place("City Wok Cineese Food", "You see a light-blue and red chineese styled building", None, None,
+                    "kfc", "gunstore", "insidechineesefood", None, None)
+gunstore = Place("Jimbo\'s Guns", "You see a crimson red building with many unique weapons in the window", None, None,
+                 "chinesefood", "bar", "insidegunstore", None, None)
+bar = Place("Skeeter\'s Wine Bar", "You see a swamp-green building with dark-tinted buildings", None, "church",
+            "gunstore", None, "insidebar", None, None)
+
+
+# Controller
+
+
+while True:
