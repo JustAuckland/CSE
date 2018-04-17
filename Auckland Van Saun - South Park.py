@@ -97,18 +97,18 @@ class Character(object):
         print()
 
 
-steve = Character("Steve", "It's Steve", None, 100, 20, 10)
-enemy = Character("Enemy", "Enemy", None, 100, 10)
-steve.attack(enemy)
-enemy.attack(steve)
-rat = Character("Rat", "Smelly Sewer Rat", None, 20, 5, 0)
-gnome = Character("Underpants Gnome", "He gon take your underwear!", None, 50, 10, 5)
+# steve = Character("Steve", "It's Steve", None, 100, 20, 10)
+# enemy = Character("Enemy", "Enemy", None, 100, 10)
+# steve.attack(enemy)
+# enemy.attack(steve)
+# rat = Character("Rat", "Smelly Sewer Rat", None, 20, 5, 0)
+# gnome = Character("Underpants Gnome", "He gon take your underwear!", None, 50, 10, 5)
 cartman = Character("Eric Cartman", "A fat kid your age, wearing a red coat and a blue poofball hood", None,
                     125, 20)
 stan = Character("Stan Marsh", "A kid your age, wearing a brown coat with a blue hat", None, 100, 25)
 kyle = Character("Kyle Broflovski", "A kid your age wearing a green coat with an orange hat", None, 100, 30)
-kenny= Character("Kenny McCormick", "")
-
+kenny = Character("Kenny McCormick", "A kid your age wearing an orange coat with the hood covering most of his face",
+                 "None", 85, 40)
 
 
 # World Map
@@ -207,4 +207,22 @@ bar = Place("Skeeter\'s Wine Bar", "You see a swamp-green building with dark-tin
 # Controller
 
 
+directions = ("north", "south", "east", "west", "enter", "up", "down")
+shortened = ("n", "s", "e", "w", "in", "u", "d")
+currentnode = yourhouse
 while True:
+    print (currentnode.name)
+    print(currentnode.description)
+    command = input(">_").lower().strip()
+    if command == "quit":
+        quit(0)
+    elif command in shortened:
+        location = shortened.index(command)
+        command = directions[location]
+    if command in directions:
+        try:
+            currentnode.move(command)
+        except KeyError:
+            print("You can\'t go that way")
+    else:
+        print("Command not recognized")
