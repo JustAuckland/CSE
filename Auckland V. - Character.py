@@ -15,6 +15,7 @@ Death
 Stats
 """
 
+
 class Character(object):
     def __init__(self, name, description, item, health, stats, armor=5):
         self.name = name
@@ -24,8 +25,7 @@ class Character(object):
         self.stats = stats
         self.armor = armor
 
-
-    def takeDamage(self, amount):
+    def takedamage(self, amount):
         dmg = amount - self.armor
         if dmg < 0:
             dmg = 0
@@ -38,7 +38,7 @@ class Character(object):
 
     def attack(self, target):
         print("%s attacks %s" % (self.name, target.name))
-        target.takeDamage(self.stats)
+        target.takedamage(self.stats)
         print()
 
 

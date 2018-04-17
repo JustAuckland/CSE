@@ -13,7 +13,7 @@ class Combat(Item):
 class Defend(Combat):
     def __init__(self, name, description, stats, armor):
         super(Defend, self).__init__(name, description, stats)
-        self.amor = armor
+        self.armor = armor
 
 
 class Attack(Combat):
@@ -50,4 +50,10 @@ class Sword(Attack):
 
     def stab(self):
         print("You stab %s")
+
+
+class Shield(Defend):
+    def __init__(self, name, description, stats, armor):
+        super(Shield, self).__init__(name, description, stats, armor)
+
 

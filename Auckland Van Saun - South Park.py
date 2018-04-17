@@ -109,6 +109,13 @@ stan = Character("Stan Marsh", "A kid your age, wearing a brown coat with a blue
 kyle = Character("Kyle Broflovski", "A kid your age wearing a green coat with an orange hat", None, 100, 30)
 kenny = Character("Kenny McCormick", "A kid your age wearing an orange coat with the hood covering most of his face",
                  "None", 85, 40)
+butters = Character("Butters Stotch", "A kid your age wearing a light-blue coat", None, 90, 25)
+jimmy = Character("Jimmy Valmer", "A kid your age with crutches wearing a yellow shirt", None, 140, 40)
+craig = Character("Craig Tucker", "A kid your age weaing a blue coat, with a matching blue hood", None, 100, 30)
+clyde = Character("Clyde Donovan", "A kid your age wearing a red and blue coat", None, 100, 25)
+bebe = Character("Bebe Stevens", "A girl your age with blonde curly hair, wearing a bright red coat", None, 120, 20)
+al = Character("Big Al", "A man in his late thirties wearing a pink hawaiian T-shirt and constantly smoking a cigar",
+               None, 150, 30)
 
 
 # World Map
@@ -127,8 +134,8 @@ class Place(object):
         self.down = down
 
     def move(self, direction):
-        global current_node
-        current_node = globals()[getattr(self, direction)]
+        global currentnode
+        currentnode = globals()[getattr(self, direction)]
 
 
 yourhouse = Place("Your House", "You see a bright red house", None, None, "randomtree", "southparksign",
@@ -152,7 +159,7 @@ sodosopa = Place("Sodosopa", "You see a broken down, olive green house, surround
                  None, None, None, "traintracks", "insidekennyshouse", "insidesodosopa", None)
 southparksign = Place("SouthPark Sign", "You see a sign that says \"South Park\" \non your left lies a road\n"
                                         "beyond the road you see a bus stop",
-                      None, None, "yourhouse", "busstop", None, None, None)
+                      None, None, "yourhouse", "road", None, None, None)
 road = Place("Road", "A road blocks your path", None, None, "southparksign", "busstop", None, None, None)
 busstop = Place("Bus Stop", "You see the local elementary school's bus stop", None, None, "road", "jimmyshouse",
                 None, None, None)
@@ -182,7 +189,7 @@ bank = Place("South Park Bank", "You see a short, dark green building", None, No
              "insidebank", None, None)
 tacoshop = Place("Taco Stand", "You see a white and red taco food truck", None, None, "playground", "bank",
                  "insidetacoshop", None, None)
-playground = Place("playground", "you see a basketball court and a small playground to th right", None, None,
+playground = Place("playground", "you see a basketball court and a small playground to the right", None, "stonepath",
                    "alshouse", "tacoshop", "insideplayground", None, None)
 alshouse = Place("Al\'s House", "You see a bright red house", "coffeeshop", None, None, "playground", "insidealshouse",
                  None, None)
@@ -211,7 +218,7 @@ directions = ("north", "south", "east", "west", "enter", "up", "down")
 shortened = ("n", "s", "e", "w", "in", "u", "d")
 currentnode = yourhouse
 while True:
-    print (currentnode.name)
+    print(currentnode.name)
     print(currentnode.description)
     command = input(">_").lower().strip()
     if command == "quit":
