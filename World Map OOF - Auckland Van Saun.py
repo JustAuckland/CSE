@@ -1,3 +1,6 @@
+# World Map
+
+
 class Place(object):
     def __init__(self, name, description, north, south, east, west, enter, up, down):
         self.name = name
@@ -11,8 +14,8 @@ class Place(object):
         self.down = down
 
     def move(self, direction):
-        global current_node
-        current_node = globals()[getattr(self, direction)]
+        global currentnode
+        currentnode = globals()[getattr(self, direction)]
 
 
 yourhouse = Place("Your House", "You see a bright red house", None, None, "randomtree", "southparksign",
@@ -36,7 +39,7 @@ sodosopa = Place("Sodosopa", "You see a broken down, olive green house, surround
                  None, None, None, "traintracks", "insidekennyshouse", "insidesodosopa", None)
 southparksign = Place("SouthPark Sign", "You see a sign that says \"South Park\" \non your left lies a road\n"
                                         "beyond the road you see a bus stop",
-                      None, None, "yourhouse", "busstop", None, None, None)
+                      None, None, "yourhouse", "road", None, None, None)
 road = Place("Road", "A road blocks your path", None, None, "southparksign", "busstop", None, None, None)
 busstop = Place("Bus Stop", "You see the local elementary school's bus stop", None, None, "road", "jimmyshouse",
                 None, None, None)
@@ -66,7 +69,7 @@ bank = Place("South Park Bank", "You see a short, dark green building", None, No
              "insidebank", None, None)
 tacoshop = Place("Taco Stand", "You see a white and red taco food truck", None, None, "playground", "bank",
                  "insidetacoshop", None, None)
-playground = Place("playground", "you see a basketball court and a small playground to th right", None, None,
+playground = Place("playground", "you see a basketball court and a small playground to the right", None, "stonepath",
                    "alshouse", "tacoshop", "insideplayground", None, None)
 alshouse = Place("Al\'s House", "You see a bright red house", "coffeeshop", None, None, "playground", "insidealshouse",
                  None, None)
@@ -86,4 +89,28 @@ gunstore = Place("Jimbo\'s Guns", "You see a crimson red building with many uniq
                  "chinesefood", "bar", "insidegunstore", None, None)
 bar = Place("Skeeter\'s Wine Bar", "You see a swamp-green building with dark-tinted buildings", None, "church",
             "gunstore", None, "insidebar", None, None)
+
+
+# Controller
+
+
+directions = ("north", "south", "east", "west", "enter", "up", "down")
+shortened = ("n", "s", "e", "w", "in", "u", "d")
+currentnode = yourhouse
+while True:
+    print(currentnode.name)
+    print(currentnode.description)
+    command = input(">_").lower().strip()
+    if command == "quit":
+        quit(0)
+    elif command in shortened:
+        location = shortened.index(command)
+        command = directions[location]
+    if command in directions:
+        try:
+            currentnode.move(command)
+        except KeyError:
+            print("You can\'t go that way")
+    else:
+        print("Command not recognized")
 

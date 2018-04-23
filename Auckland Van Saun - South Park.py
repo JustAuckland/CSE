@@ -96,6 +96,9 @@ class Character(object):
         target.takedamage(self.stats)
         print()
 
+class self(Character):
+    def __init__(self):
+
 
 # steve = Character("Steve", "It's Steve", None, 100, 20, 10)
 # enemy = Character("Enemy", "Enemy", None, 100, 10)
@@ -108,7 +111,7 @@ cartman = Character("Eric Cartman", "A fat kid your age, wearing a red coat and 
 stan = Character("Stan Marsh", "A kid your age, wearing a brown coat with a blue hat", None, 100, 25)
 kyle = Character("Kyle Broflovski", "A kid your age wearing a green coat with an orange hat", None, 100, 30)
 kenny = Character("Kenny McCormick", "A kid your age wearing an orange coat with the hood covering most of his face",
-                 "None", 85, 40)
+                  None, 85, 40)
 butters = Character("Butters Stotch", "A kid your age wearing a light-blue coat", None, 90, 25)
 jimmy = Character("Jimmy Valmer", "A kid your age with crutches wearing a yellow shirt", None, 140, 40)
 craig = Character("Craig Tucker", "A kid your age weaing a blue coat, with a matching blue hood", None, 100, 30)
@@ -233,3 +236,5 @@ while True:
             print("You can\'t go that way")
     else:
         print("Command not recognized")
+
+    def fight(self, enemy)
