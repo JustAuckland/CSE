@@ -11,9 +11,17 @@
 """
 
 
+def fight(enemy):
+    print("You have %d health left" % you.health)
+    print("%s has %d health left" % (enemy.name, enemy.health))
+    while you.health > 0 and enemy.health > 0:
+        cmd = input(">_")
+        if cmd == 'attack':
+            you.attack(enemy)
+        enemy.attack(you)
+
+
 # Items
-
-
 class Item(object):
     def __init__(self, name, description):
         self.name = name
@@ -72,7 +80,7 @@ class Sword(Attack):
 
 
 class Character(object):
-    def __init__(self, name, description, item, health, stats, armor=5):
+    def __init__(self, name, description, item, health, stats, armor=0):
         self.name = name
         self.description = description
         self.item = item
@@ -88,44 +96,45 @@ class Character(object):
         self.health -= dmg
         print("%s has %d hp left" % (self.name, self.health))
 
-    def health1(self):
-        pass
-
     def attack(self, target):
         print("%s attacks %s" % (self.name, target.name))
         target.takedamage(self.stats)
         print()
 
-class self(Character):
-    def __init__(self):
+
+class Enemy(Character):
+    def __init__(self, name, description, item, health, stats, armor=0):
+        super(Enemy, self).__init__(name, description, item, health, stats, armor)
 
 
-# steve = Character("Steve", "It's Steve", None, 100, 20, 10)
-# enemy = Character("Enemy", "Enemy", None, 100, 10)
-# steve.attack(enemy)
-# enemy.attack(steve)
-# rat = Character("Rat", "Smelly Sewer Rat", None, 20, 5, 0)
-# gnome = Character("Underpants Gnome", "He gon take your underwear!", None, 50, 10, 5)
-cartman = Character("Eric Cartman", "A fat kid your age, wearing a red coat and a blue poofball hood", None,
+class Friendly(Character):
+    def __init__(self, name, description, item, health, stats, armor=0):
+        super(Friendly, self).__init__(name, description, item, health, stats, armor)
+
+
+you = Character("You", "You are wearing a white sleeveless coat and wearing a backwards baseball cap",
+                None, 175, 20)
+cartman = Enemy("Eric Cartman", "a fat kid your age, wearing a red coat and a blue poofball hood", None,
                     125, 20)
-stan = Character("Stan Marsh", "A kid your age, wearing a brown coat with a blue hat", None, 100, 25)
-kyle = Character("Kyle Broflovski", "A kid your age wearing a green coat with an orange hat", None, 100, 30)
-kenny = Character("Kenny McCormick", "A kid your age wearing an orange coat with the hood covering most of his face",
+stan = Friendly("Stan Marsh", "a kid your age, wearing a brown coat with a blue hat", None, 100, 25)
+kyle = Friendly("Kyle Broflovski", "a kid your age wearing a green coat with an orange hat", None, 100, 30)
+kenny = Enemy("Kenny McCormick", "a kid your age wearing an orange coat with the hood covering most of his face",
                   None, 85, 40)
-butters = Character("Butters Stotch", "A kid your age wearing a light-blue coat", None, 90, 25)
-jimmy = Character("Jimmy Valmer", "A kid your age with crutches wearing a yellow shirt", None, 140, 40)
-craig = Character("Craig Tucker", "A kid your age weaing a blue coat, with a matching blue hood", None, 100, 30)
-clyde = Character("Clyde Donovan", "A kid your age wearing a red and blue coat", None, 100, 25)
-bebe = Character("Bebe Stevens", "A girl your age with blonde curly hair, wearing a bright red coat", None, 120, 20)
-al = Character("Big Al", "A man in his late thirties wearing a pink hawaiian T-shirt and constantly smoking a cigar",
-               None, 150, 30)
+butters = Friendly("Butters Stotch", "a kid your age wearing a light-blue coat", None, 90, 25)
+jimmy = Enemy("Jimmy Valmer", "a kid your age with crutches wearing a yellow shirt", None, 140, 40)
+craig = Friendly("Craig Tucker", "a kid your age weaing a blue coat, with a matching blue hood", None, 100, 30)
+clyde = Enemy("Clyde Donovan", "a kid your age wearing a red and blue coat", None, 100, 25)
+bebe = Enemy("Bebe Stevens", "a girl your age with blonde curly hair, wearing a bright red coat", None, 120, 20)
+al = Friendly("Big Al", "a man in his late thirties wearing a pink hawaiian T-shirt and constantly smoking a cigar",
+              None, 150, 30)
+token = Friendly("Token Black", "a kid your age with an afro, wearing a purple shirt", None, 100, 25)
 
 
 # World Map
 
 
 class Place(object):
-    def __init__(self, name, description, north, south, east, west, enter, up, down):
+    def __init__(self, name, description, north, south, east, west, enter, up, down, character=None):
         self.name = name
         self.description = description
         self.north = north
@@ -135,6 +144,7 @@ class Place(object):
         self.enter = enter
         self.up = up
         self.down = down
+        self.character = character
 
     def move(self, direction):
         global currentnode
@@ -146,20 +156,20 @@ yourhouse = Place("Your House", "You see a bright red house", None, None, "rando
 randomtree = Place("Random Tree", "You see a random tree", None, None, "buttershouse", "yourhouse",
                    "inside_buttershouse", None, None)
 buttershouse = Place("Butters\'house", "You see a red brownish house", None, None, "cartmanshouse", "randomtree",
-                     "inside_buttershouse", None, None)
-cartmanshouse = Place("Cartman\'s house", "You see a bright green house", None, None, "stanshouse", "buddershouse",
-                      "inside_cartmanshouse", None, None)
+                     "inside_buttershouse", None, None, butters)
+cartmanshouse = Place("Cartman\'s house", "You see a bright green house", None, None, "stanshouse", "buttershouse",
+                      "inside_cartmanshouse", None, None, cartman)
 stanshouse = Place("Stan\'s house", "You see a dark green house", None, None, "kyleshouse", "cartmanshouse",
-                   "insidestanshouse", None, None)
+                   "insidestanshouse", None, None, stan)
 kyleshouse = Place("Kyle\'s house", "You see a moss green house", None, None, "stonepath", "stanshouse",
-                   "insidekyleshouse", None, None)
+                   "insidekyleshouse", None, None, kyle)
 stonepath = Place("Stone Path", "You see a paved path to your left leading to what looks like a park", "playground",
                   None, "traintracks", "kyleshouse", None, None, None)
 traintracks = Place("Train Tracks", "You see train tracks almost hidden under a trick layer of snow", None, None,
                     "sodosopa", "stonepath", None, None, None)
 sodosopa = Place("Sodosopa", "You see a broken down, olive green house, surrounded almost completely by what seems "
                              "to be a modernized restaurant",
-                 None, None, None, "traintracks", "insidekennyshouse", "insidesodosopa", None)
+                 None, None, None, "traintracks", "insidekennyshouse", "insidesodosopa", None, kenny)
 southparksign = Place("SouthPark Sign", "You see a sign that says \"South Park\" \non your left lies a road\n"
                                         "beyond the road you see a bus stop",
                       None, None, "yourhouse", "road", None, None, None)
@@ -167,13 +177,13 @@ road = Place("Road", "A road blocks your path", None, None, "southparksign", "bu
 busstop = Place("Bus Stop", "You see the local elementary school's bus stop", None, None, "road", "jimmyshouse",
                 None, None, None)
 jimmyshouse = Place("Jimmy\'s house", "You see a red house", None, None, "busstop", "craigshouse", "inside_jimmyshouse",
-                    None, None)
+                    None, None, jimmy)
 craigshouse = Place("Craig\'s house", "You see a light brown house", None, None, "jimmyshouse", "clydeshouse",
-                    "inside_craigshouse", None, None)
+                    "inside_craigshouse", None, None, craig)
 clydeshouse = Place("Clyde\'s house", "You see a dark brown house", None, None, "craigshouse", "bebeshouse",
-                    "inside_clydeshouse", None, None)
+                    "inside_clydeshouse", None, None, clyde)
 bebeshouse = Place("Bebe\'s house)", "You see a red house", None, None, "clydeshouse", "communitycenter",
-                   "insidebebeshouse", None, None)
+                   "insidebebeshouse", None, None, bebe)
 communitycenter = Place("Community Center", "You see a large, orange multi-purpose building", "policestation", None,
                         "bebeshouse", "elementaryschool", "insidecommunitycenter", None, None)
 elementaryschool = Place("South Park Elementary School", "You see a yellow double-storie elementary school building",
@@ -195,13 +205,13 @@ tacoshop = Place("Taco Stand", "You see a white and red taco food truck", None, 
 playground = Place("playground", "you see a basketball court and a small playground to the right", None, "stonepath",
                    "alshouse", "tacoshop", "insideplayground", None, None)
 alshouse = Place("Al\'s House", "You see a bright red house", "coffeeshop", None, None, "playground", "insidealshouse",
-                 None, None)
+                 None, None, al)
 coffeeshop = Place("Tweal Bro\'s Coffee", "You see a small tan building with a coffee sign", None, "alshouse", None,
                    "theatre", "insidecoffeeshop", None, None)
 theatre = Place("Movie Theatre", "You see a large orange and red theatre", None, None, "coffeeshop", "tokenshouse",
                 "insidetheatre", None, None)
 tokenshouse = Place("Token\'s House", "You see a very large fenced-off light brown manor", None, None, "theatre",
-                    "mall", "insidetokenshouse", None, None)
+                    "mall", "insidetokenshouse", None, None, token)
 mall = Place("South Park Mall", "You see a very large light-blue mall under construction", None, None, "tokenshouse",
              "kfc", None, None, None)
 kfc = Place("South Park Fried Chicken", "You see a fried chicken fast-food restaurant", None, None, "mall",
@@ -217,8 +227,8 @@ bar = Place("Skeeter\'s Wine Bar", "You see a swamp-green building with dark-tin
 # Controller
 
 
-directions = ("north", "south", "east", "west", "enter", "up", "down")
-shortened = ("n", "s", "e", "w", "in", "u", "d")
+directions = ["north", "south", "east", "west", "enter", "up", "down"]
+shortened = ["n", "s", "e", "w", "in", "u", "d"]
 currentnode = yourhouse
 while True:
     print(currentnode.name)
@@ -234,7 +244,17 @@ while True:
             currentnode.move(command)
         except KeyError:
             print("You can\'t go that way")
+    elif "attack" in command:
+        if currentnode.character is not None and isinstance(currentnode.character, Enemy):
+            fight(currentnode.character)
+        else:
+            if currentnode.character is not None and isinstance(currentnode.character, Friendly):
+                print("There is nobody here willing to fight. \nDon\'t be mean like that")
+            else:
+                print("There is nobody here. \nIf someone was here, they'd laugh at you")
+    elif "description" in command:
+        #print("%s" % currentnode.description)
+        if currentnode.character:
+            print("You see a %s named %s" % (currentnode.character.description, currentnode.character.name))
     else:
         print("Command not recognized")
-
-    def fight(self, enemy)
