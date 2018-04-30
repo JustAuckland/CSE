@@ -20,6 +20,11 @@ class NumberError(Exception):
         super(NumberError, self).__init__()
 
 
+def game_over():
+    print("YOU HAVE DIED")
+    quit(0)
+
+
 def fight(enemy):
     print("You have %d health left" % you.health)
     print("%s has %d health left" % (enemy.name, enemy.health))
@@ -43,6 +48,8 @@ def fight(enemy):
             continue
         if enemy.health > 0:
             enemy.attack(you)
+            if you.health <= 0:
+                game_over()
 
 
 # Items
@@ -170,7 +177,10 @@ class Character(object):
         self.health -= dmg
         if self.health < 0:
             self.health = 0
-        print("%s has %d hp left" % (self.name, self.health))
+        if self.name == "You":
+            print("You have %d hp left" % self.health)
+        else:
+            print("%s has %d hp left" % (self.name, self.health))
 
     def attack(self, target):
         if self.name == "You":
@@ -309,15 +319,16 @@ bar = Place("Skeeter\'s Wine Bar", "You see a swamp-green building with dark-tin
 directions = ["north", "south", "east", "west", "enter", "up", "down"]
 shortened = ["n", "s", "e", "w", "in", "u", "d"]
 currentnode = yourhouse
-while True:
+while you.health > 0:
     print(currentnode.name)
     print(currentnode.description)
-    command = input(">_").lower().strip()
 
-    if command == "quit":
-        quit(0)
     if currentnode.character is not None:
         print("You see %s" % currentnode.character.name)
+
+    command = input(">_").lower().strip()
+    if command == "quit":
+        quit(0)
     elif command in shortened:
         location = shortened.index(command)
         command = directions[location]
@@ -334,7 +345,7 @@ while True:
                 print("There is nobody here willing to fight. \nDon\'t be mean like that")
             else:
                 print("There is nobody here. \nIf someone was here, they'd laugh at you")
-    elif "description" in command:  
+    elif "description" in command:
         if currentnode.character:
             print("You see a %s named %s" % (currentnode.character.description, currentnode.character.name))
     else:
