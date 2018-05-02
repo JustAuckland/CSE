@@ -12,7 +12,7 @@
 
 
 def clear_screen():
-    print("\n" * 20)
+    print("\n" * 8)
 
 
 class NumberError(Exception):
@@ -21,7 +21,13 @@ class NumberError(Exception):
 
 
 def game_over():
-    print("YOU HAVE DIED")
+    print("  _____          __  __ ______    ______      ________ _____  _\n"
+          " / ____|   /\   |  \/  |  ____|  / __ \ \    / /  ____|  __ \| |\n"
+         "| |  __   /  \  | \  / | |__    | |  | \ \  / /| |__  | |__) | |\n"
+         "| | |_ | / /\ \ | |\/| |  __|   | |  | |\ \/ / |  __| |  _  /| |\n"
+         "| |__| |/ ____ \| |  | | |____  | |__| | \  /  | |____| | \ \|_|\n"
+          " \_____/_/    \_\_|  |_|______|  \____/   \/   |______|_|  \_(_)\n")
+
     quit(0)
 
 
@@ -49,7 +55,10 @@ def fight(enemy):
         if enemy.health > 0:
             enemy.attack(you)
             if you.health <= 0:
+                print("You have died at the hands of %s\n" % enemy.name)
                 game_over()
+        if enemy.health <= 0:
+            print("%s has been defeated\n" % enemy.name)
 
 
 # Items
@@ -106,7 +115,7 @@ class Sword(Attack):
         super(Sword, self).__init__(name, description, stats, damage)
 
     def stab(self):
-        print("You stab %s")
+        print("You stab %s" % currentnode.character.name)
 
 
 class Shield(Defend):
@@ -157,17 +166,19 @@ class Drinks(Consumable):
         print("You have shielded yourself for %d ammount of damage" % self.shield)
 
 
+antoniodoll = Item("Antonio Banderas blow-up doll", "A nearly-lifesize blow-up doll of Antonio Banderas")
+
 # Characters
 
 
 class Character(object):
-    def __init__(self, name, description, item, health, stats, armor=0):
+    def __init__(self, name, description, health, stats, armor=0, item=None):
         self.name = name
         self.description = description
-        self.item = item
         self.health = health
         self.stats = stats
         self.armor = armor
+        self.item = item
 
     def takedamage(self, amount):
         dmg = amount - self.armor
@@ -192,38 +203,38 @@ class Character(object):
 
 
 class Enemy(Character):
-    def __init__(self, name, description, item, health, stats, armor=0):
-        super(Enemy, self).__init__(name, description, item, health, stats, armor)
+    def __init__(self, name, description, health, stats, armor=0, item=None):
+        super(Enemy, self).__init__(name, description, health, stats, armor, item)
 
 
 class Friendly(Character):
-    def __init__(self, name, description, item, health, stats, armor=0):
-        super(Friendly, self).__init__(name, description, item, health, stats, armor)
+    def __init__(self, name, description, health, stats, armor=0, item=None):
+        super(Friendly, self).__init__(name, description, health, stats, armor, item)
 
 
 you = Character("You", "You are wearing a white sleeveless coat and wearing a backwards baseball cap",
-                None, 175, 20)
-cartman = Enemy("Eric Cartman", "a fat kid your age, wearing a red coat and a blue poofball hood", None,
-                125, 20)
+                175, 20)
+cartman = Enemy("Eric Cartman", "a fat kid your age, wearing a red coat and a blue poofball hood",
+                125, 20, 0, antoniodoll)
 stan = Friendly("Stan Marsh", "a kid your age, wearing a brown coat with a blue hat", None, 100, 25)
 kyle = Friendly("Kyle Broflovski", "a kid your age wearing a green coat with an orange hat", None, 100, 30)
 kenny = Enemy("Kenny McCormick", "a kid your age wearing an orange coat with the hood covering most of his face",
-              None, 85, 40)
-butters = Friendly("Butters Stotch", "a kid your age wearing a light-blue coat", None, 90, 25)
-jimmy = Enemy("Jimmy Valmer", "a kid your age with crutches wearing a yellow shirt", None, 140, 40)
-craig = Friendly("Craig Tucker", "a kid your age weaing a blue coat, with a matching blue hood", None, 100, 30)
-clyde = Enemy("Clyde Donovan", "a kid your age wearing a red and blue coat", None, 100, 25)
-bebe = Enemy("Bebe Stevens", "a girl your age with blonde curly hair, wearing a bright red coat", None, 120, 20)
+              85, 40)
+butters = Friendly("Butters Stotch", "a kid your age wearing a light-blue coat", 90, 25)
+jimmy = Enemy("Jimmy Valmer", "a kid your age with crutches wearing a yellow shirt", 140, 40)
+craig = Friendly("Craig Tucker", "a kid your age weaing a blue coat, with a matching blue hood", 100, 30)
+clyde = Enemy("Clyde Donovan", "a kid your age wearing a red and blue coat", 100, 25)
+bebe = Enemy("Bebe Stevens", "a girl your age with blonde curly hair, wearing a bright red coat", 120, 20)
 al = Friendly("Big Al", "a man in his late thirties wearing a pink hawaiian T-shirt and constantly smoking a cigar",
-              None, 150, 30)
-token = Friendly("Token Black", "a kid your age with an afro, wearing a purple shirt", None, 100, 25)
+              150, 30)
+token = Friendly("Token Black", "a kid your age with an afro, wearing a purple shirt", 100, 25)
 
 
 # World Map
 
 
 class Place(object):
-    def __init__(self, name, description, north, south, east, west, enter, up, down, character=None):
+    def __init__(self, name, description, north, south, east, west, enter, up, down, character=None, item=None):
         self.name = name
         self.description = description
         self.north = north
@@ -234,6 +245,7 @@ class Place(object):
         self.up = up
         self.down = down
         self.character = character
+        self.item = item
 
     def move(self, direction):
         global currentnode
@@ -319,6 +331,7 @@ bar = Place("Skeeter\'s Wine Bar", "You see a swamp-green building with dark-tin
 directions = ["north", "south", "east", "west", "enter", "up", "down"]
 shortened = ["n", "s", "e", "w", "in", "u", "d"]
 currentnode = yourhouse
+
 while you.health > 0:
     print(currentnode.name)
     print(currentnode.description)
@@ -337,7 +350,8 @@ while you.health > 0:
             currentnode.move(command)
         except KeyError:
             print("You can\'t go that way")
-    elif "attack" in command:
+    elif "fight" in command:
+        print("A great fight has commenced")
         if currentnode.character is not None and isinstance(currentnode.character, Enemy):
             fight(currentnode.character)
         else:
