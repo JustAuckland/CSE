@@ -12,7 +12,10 @@
 
 
 def clear_screen():
-    print("\n" * 8)
+    print("")
+    print("_________________________________________________________________________")
+    print("")
+
 
 
 class NumberError(Exception):
@@ -27,11 +30,16 @@ def game_over():
          "| | |_ | / /\ \ | |\/| |  __|   | |  | |\ \/ / |  __| |  _  /| |\n"
          "| |__| |/ ____ \| |  | | |____  | |__| | \  /  | |____| | \ \|_|\n"
           " \_____/_/    \_\_|  |_|______|  \____/   \/   |______|_|  \_(_)\n")
-
     quit(0)
 
 
+def inventory():
+    print("")
+
+
 def fight(enemy):
+    clear_screen()
+    print()
     print("You have %d health left" % you.health)
     print("%s has %d health left" % (enemy.name, enemy.health))
     while you.health > 0 and enemy.health > 0:
@@ -39,6 +47,9 @@ def fight(enemy):
         attack_commands = ['Attack', "Do nothing", "sleep"]
         for num, action in enumerate(attack_commands):
             print(str(num + 1) + ": " + action)
+        print("\n" * 1)
+        print("_________________________________________________________________________")
+        print("")
         try:
             cmd = int(input(">_"))
             clear_screen()
@@ -367,11 +378,14 @@ while you.health > 0:
     elif "description" in command:
         if currentnode.character:
             print("You see a %s named %s" % (currentnode.character.description, currentnode.character.name))
-    elif command == 'look':
+    elif command == "look":
         if currentnode.item is not None:
             if currentnode.item.name[0].lower() in ['a', 'e', 'i', 'o', 'u']:
                 print("You see an %s in the room" % currentnode.item.name)
             else:
                 print("You see a %s in the room" % currentnode.item.name)
+    elif command == "give":
+        print("")
+
     else:
         print("Command not recognized")
