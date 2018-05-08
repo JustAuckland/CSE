@@ -166,7 +166,8 @@ class Drinks(Consumable):
         print("You have shielded yourself for %d ammount of damage" % self.shield)
 
 
-antoniodoll = Item("Antonio Banderas blow-up doll", "A nearly-lifesize blow-up doll of Antonio Banderas")
+antoniodoll = Item("Antonio Banderas doll", "A nearly-lifesize blow-up doll of Antonio Banderas")
+
 
 # Characters
 
@@ -234,7 +235,8 @@ token = Friendly("Token Black", "a kid your age with an afro, wearing a purple s
 
 
 class Place(object):
-    def __init__(self, name, description, north, south, east, west, enter, up, down, character=None, item=None):
+    def __init__(self, name, description, north, south, east, west, enter, up, down, character=None, item=None,
+                 leave=None):
         self.name = name
         self.description = description
         self.north = north
@@ -246,6 +248,7 @@ class Place(object):
         self.down = down
         self.character = character
         self.item = item
+        self.exit = leave
 
     def move(self, direction):
         global currentnode
@@ -253,7 +256,7 @@ class Place(object):
 
 
 yourhouse = Place("Your House", "You see a bright red house", None, None, "randomtree", "southparksign",
-                  "inside_yourhouse", None, None)
+                  "inside_yourhouse", None, None, None, antoniodoll)
 randomtree = Place("Random Tree", "You see a random tree", None, None, "buttershouse", "yourhouse",
                    "inside_buttershouse", None, None)
 buttershouse = Place("Butters\'house", "You see a red brownish house", None, None, "cartmanshouse", "randomtree",
@@ -323,13 +326,15 @@ gunstore = Place("Jimbo\'s Guns", "You see a crimson red building with many uniq
                  "chinesefood", "bar", "insidegunstore", None, None)
 bar = Place("Skeeter\'s Wine Bar", "You see a swamp-green building with dark-tinted buildings", None, "church",
             "gunstore", None, "insidebar", None, None)
+inside_yourhouse = Place("Inside Your House""You see a good-sized family room with a couch  and a TV", None, None, None,
+                         None, None, None, None, None, None, "yourhouse")
 
 
 # Controller
 
 
-directions = ["north", "south", "east", "west", "enter", "up", "down"]
-shortened = ["n", "s", "e", "w", "in", "u", "d"]
+directions = ["north", "south", "east", "west", "enter", "exit", "up", "down"]
+shortened = ["n", "s", "e", "w", "in", "out", "u", "d"]
 currentnode = yourhouse
 
 while you.health > 0:
@@ -362,5 +367,11 @@ while you.health > 0:
     elif "description" in command:
         if currentnode.character:
             print("You see a %s named %s" % (currentnode.character.description, currentnode.character.name))
+    elif command == 'look':
+        if currentnode.item is not None:
+            if currentnode.item.name[0].lower() in ['a', 'e', 'i', 'o', 'u']:
+                print("You see an %s in the room" % currentnode.item.name)
+            else:
+                print("You see a %s in the room" % currentnode.item.name)
     else:
         print("Command not recognized")
