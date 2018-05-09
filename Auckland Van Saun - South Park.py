@@ -12,10 +12,8 @@
 
 
 def clear_screen():
-    print("")
     print("_________________________________________________________________________")
     print("")
-
 
 
 class NumberError(Exception):
@@ -24,27 +22,28 @@ class NumberError(Exception):
 
 
 def game_over():
-    print("  _____          __  __ ______    ______      ________ _____  _\n"
-          " / ____|   /\   |  \/  |  ____|  / __ \ \    / /  ____|  __ \| |\n"
-         "| |  __   /  \  | \  / | |__    | |  | \ \  / /| |__  | |__) | |\n"
-         "| | |_ | / /\ \ | |\/| |  __|   | |  | |\ \/ / |  __| |  _  /| |\n"
-         "| |__| |/ ____ \| |  | | |____  | |__| | \  /  | |____| | \ \|_|\n"
-          " \_____/_/    \_\_|  |_|______|  \____/   \/   |______|_|  \_(_)\n")
+    print("   _____          __  __ ______    ______      ________ _____  _\n"
+          "  / ____|   /\   |  \/  |  ____|  / __ \ \    / /  ____|  __ \| |\n"
+          " | |  __   /  \  | \  / | |__    | |  | \ \  / /| |__  | |__) | |\n"
+          " | | |_ | / /\ \ | |\/| |  __|   | |  | |\ \/ / |  __| |  _  /| |\n"
+          " | |__| |/ ____ \| |  | | |____  | |__| | \  /  | |____| | \ \|_|\n"
+          "  \_____/_/    \_\_|  |_|______|  \____/   \/   |______|_|  \_(_)\n")
     quit(0)
 
 
 def inventory():
-    print("")
+    print("this worked out well")
+    clear_screen()
 
 
 def fight(enemy):
     clear_screen()
-    print()
+    # print()
     print("You have %d health left" % you.health)
     print("%s has %d health left" % (enemy.name, enemy.health))
     while you.health > 0 and enemy.health > 0:
         print("What do you want to do?")
-        attack_commands = ['Attack', "Do nothing", "sleep"]
+        attack_commands = ['Attack', "Do nothing", "Use item", "Run"]
         for num, action in enumerate(attack_commands):
             print(str(num + 1) + ": " + action)
         print("\n" * 1)
@@ -55,6 +54,12 @@ def fight(enemy):
             clear_screen()
             if cmd == 1:
                 you.attack(enemy)
+            elif cmd == 2:
+                print("You do nothing")
+            elif cmd == 3:
+                print("\"Open\'s bag\"")
+            elif cmd == 4:
+                print("You got away safely")
             elif cmd > len(attack_commands) or cmd < 0:
                 raise NumberError
         except ValueError:
@@ -349,6 +354,7 @@ shortened = ["n", "s", "e", "w", "in", "out", "u", "d"]
 currentnode = yourhouse
 
 while you.health > 0:
+    # print()
     print(currentnode.name)
     print(currentnode.description)
 
@@ -356,6 +362,7 @@ while you.health > 0:
         print("You see %s" % currentnode.character.name)
 
     command = input(">_").lower().strip()
+    clear_screen()
     if command == "quit":
         quit(0)
     elif command in shortened:
@@ -367,7 +374,7 @@ while you.health > 0:
         except KeyError:
             print("You can\'t go that way")
     elif "fight" in command:
-        print("A great fight has commenced")
+        print("You challenge %s" % currentnode.character.name)
         if currentnode.character is not None and isinstance(currentnode.character, Enemy):
             fight(currentnode.character)
         else:
@@ -375,6 +382,10 @@ while you.health > 0:
                 print("There is nobody here willing to fight. \nDon\'t be mean like that")
             else:
                 print("There is nobody here. \nIf someone was here, they'd laugh at you")
+    elif "inventory" in command:
+        print("You open your bag")
+        inventory()
+
     elif "description" in command:
         if currentnode.character:
             print("You see a %s named %s" % (currentnode.character.description, currentnode.character.name))
