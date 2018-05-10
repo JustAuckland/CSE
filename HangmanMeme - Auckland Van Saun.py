@@ -5,7 +5,7 @@ import string
 
 def game():
         
-        guesses_left = 10
+        guesses_left = 8
         letters_guessed = list(string.punctuation + " ")
         game_end = 0
         bank = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", "Ashe", "Aurelion Sol", "Azir", 

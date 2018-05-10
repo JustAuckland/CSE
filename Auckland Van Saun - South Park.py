@@ -9,6 +9,10 @@
 -controller
 
 """
+import random
+
+randomnumber = random.randint(1, 10)
+mod = randomnumber % 2
 
 
 def clear_screen():
@@ -37,11 +41,11 @@ def inventory():
 
 
 def fight(enemy):
+    endloop = 0
     clear_screen()
-    # print()
     print("You have %d health left" % you.health)
     print("%s has %d health left" % (enemy.name, enemy.health))
-    while you.health > 0 and enemy.health > 0:
+    while you.health > 0 and enemy.health > 0 and endloop == 0:
         print("What do you want to do?")
         attack_commands = ['Attack', "Do nothing", "Use item", "Run"]
         for num, action in enumerate(attack_commands):
@@ -59,7 +63,13 @@ def fight(enemy):
             elif cmd == 3:
                 print("\"Open\'s bag\"")
             elif cmd == 4:
-                print("You got away safely")
+                print(mod)
+                if mod == 0:
+                    print("You got away safely")
+                    endloop += 1
+                else:
+                    print("You were unable to escape")
+
             elif cmd > len(attack_commands) or cmd < 0:
                 raise NumberError
         except ValueError:
