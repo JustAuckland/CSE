@@ -10,9 +10,7 @@
 
 """
 import random
-
-randomnumber = random.randint(1, 10)
-mod = randomnumber % 2
+import webbrowser
 
 
 def clear_screen():
@@ -46,8 +44,10 @@ def fight(enemy):
     print("You have %d health left" % you.health)
     print("%s has %d health left" % (enemy.name, enemy.health))
     while you.health > 0 and enemy.health > 0 and endloop == 0:
+        randomnumber = random.randint(1, 10)
+        mod = randomnumber % 2
         print("What do you want to do?")
-        attack_commands = ['Attack', "Do nothing", "Use item", "Run"]
+        attack_commands = ["Attack", "Do nothing", "Use item", "Run"]
         for num, action in enumerate(attack_commands):
             print(str(num + 1) + ": " + action)
         print("\n" * 1)
@@ -60,16 +60,18 @@ def fight(enemy):
                 you.attack(enemy)
             elif cmd == 2:
                 print("You do nothing")
-            elif cmd == 3:
+            # elif cmd == 3:
                 print("\"Open\'s bag\"")
+                inventory_bag = ['heal potion']
+                for num, action in enumerate(inventory_bag):
+                    print(str(num + 1) + ": " + action)
             elif cmd == 4:
-                print(mod)
+                print()
                 if mod == 0:
                     print("You got away safely")
                     endloop += 1
                 else:
                     print("You were unable to escape")
-
             elif cmd > len(attack_commands) or cmd < 0:
                 raise NumberError
         except ValueError:
@@ -78,13 +80,14 @@ def fight(enemy):
         except NumberError:
             print("Invalid number")
             continue
-        if enemy.health > 0:
-            enemy.attack(you)
-            if you.health <= 0:
-                print("You have died at the hands of %s\n" % enemy.name)
-                game_over()
-        if enemy.health <= 0:
-            print("%s has been defeated\n" % enemy.name)
+        if endloop == 0:
+            if enemy.health > 0:
+                enemy.attack(you)
+                if you.health <= 0:
+                    print("You have died at the hands of %s\n" % enemy.name)
+                    game_over()
+            if enemy.health <= 0:
+                print("%s has been defeated\n" % enemy.name)
 
 
 # Items
@@ -384,7 +387,8 @@ while you.health > 0:
         except KeyError:
             print("You can\'t go that way")
     elif "fight" in command:
-        print("You challenge %s" % currentnode.character.name)
+        if currentnode.character is not None:
+            print("You challenge %s" % currentnode.character.name)
         if currentnode.character is not None and isinstance(currentnode.character, Enemy):
             fight(currentnode.character)
         else:
@@ -408,5 +412,8 @@ while you.health > 0:
     elif command == "give":
         print("")
 
+    elif command == "declaration":
+        print("Umm... sure")
+        webbrowser.open_new("http://www.ushistory.org/declaration/document/")
     else:
         print("Command not recognized")
