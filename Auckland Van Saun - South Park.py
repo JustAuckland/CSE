@@ -10,7 +10,6 @@
 
 """
 import random
-import webbrowser
 
 
 def clear_screen():
@@ -34,8 +33,22 @@ def game_over():
 
 
 def inventory():
-    print("this worked out well")
+    closebag = 0
     clear_screen()
+    while closebag != 0:
+        i = []
+        bag_commands = ["Give", "Close"]
+        for num, action in enumerate(bag_commands):
+            print(str(num + 1) + ": + action")
+        try:
+            cmd = int(input(">_"))
+            if cmd == 1:
+                print("Ill make this command later")
+            elif cmd == 2:
+                print("You closed the bag")
+                closebag += 1:
+
+
 
 
 def fight(enemy):
@@ -198,6 +211,7 @@ class Drinks(Consumable):
 antoniodoll = Item("Antonio Banderas doll", "A nearly-lifesize blow-up doll of Antonio Banderas")
 
 
+
 # Characters
 
 
@@ -245,7 +259,7 @@ class Friendly(Character):
 you = Character("You", "You are wearing a white sleeveless coat and wearing a backwards baseball cap",
                 175, 20)
 cartman = Enemy("Eric Cartman", "a fat kid your age, wearing a red coat and a blue poofball hood",
-                125, 20, 0, antoniodoll)
+                125, 20)
 stan = Friendly("Stan Marsh", "a kid your age, wearing a brown coat with a blue hat", None, 100, 25)
 kyle = Friendly("Kyle Broflovski", "a kid your age wearing a green coat with an orange hat", None, 100, 30)
 kenny = Enemy("Kenny McCormick", "a kid your age wearing an orange coat with the hood covering most of his face",
@@ -258,6 +272,8 @@ bebe = Enemy("Bebe Stevens", "a girl your age with blonde curly hair, wearing a 
 al = Friendly("Big Al", "a man in his late thirties wearing a pink hawaiian T-shirt and constantly smoking a cigar",
               150, 30)
 token = Friendly("Token Black", "a kid your age with an afro, wearing a purple shirt", 100, 25)
+cartmansmom = Friendly("Mrs. Cartman", "A young lady wearing a light-blue blouse", 200, 20, 0, antoniodoll
+tweak = Friendly()
 
 
 # World Map
@@ -386,7 +402,7 @@ while you.health > 0:
             currentnode.move(command)
         except KeyError:
             print("You can\'t go that way")
-    elif "fight" in command:
+    elif "fight" or "attack" in command:
         if currentnode.character is not None:
             print("You challenge %s" % currentnode.character.name)
         if currentnode.character is not None and isinstance(currentnode.character, Enemy):
@@ -409,11 +425,5 @@ while you.health > 0:
                 print("You see an %s in the room" % currentnode.item.name)
             else:
                 print("You see a %s in the room" % currentnode.item.name)
-    elif command == "give":
-        print("")
-
-    elif command == "declaration":
-        print("Umm... sure")
-        webbrowser.open_new("http://www.ushistory.org/declaration/document/")
     else:
         print("Command not recognized")
