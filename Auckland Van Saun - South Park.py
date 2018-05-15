@@ -12,6 +12,9 @@
 import random
 
 
+inv = []
+
+
 def clear_screen():
     print("_________________________________________________________________________")
     print("")
@@ -35,20 +38,29 @@ def game_over():
 def inventory():
     closebag = 0
     clear_screen()
-    while closebag != 0:
-        i = []
+    while closebag == 0:
+        print("The items in your inventory include : ")
+        for itemname in inv:
+            print(" - %s" % itemname.name)
         bag_commands = ["Give", "Close"]
         for num, action in enumerate(bag_commands):
-            print(str(num + 1) + ": + action")
+            print(str(num + 1) + ": " + action)
         try:
             cmd = int(input(">_"))
             if cmd == 1:
                 print("Ill make this command later")
             elif cmd == 2:
                 print("You closed the bag")
-                closebag += 1:
+                closebag += 1
+            elif cmd > len(bag_commands) or cmd < 0:
+                raise NumberError
 
-
+        except ValueError:
+            print("That is not a number")
+            continue
+        except NumberError:
+            print("Invalid number")
+            continue
 
 
 def fight(enemy):
@@ -73,11 +85,11 @@ def fight(enemy):
                 you.attack(enemy)
             elif cmd == 2:
                 print("You do nothing")
-            # elif cmd == 3:
-                print("\"Open\'s bag\"")
-                inventory_bag = ['heal potion']
-                for num, action in enumerate(inventory_bag):
-                    print(str(num + 1) + ": " + action)
+            # elif cmd ==3:
+               # print("\"Open\'s bag\"")
+               # inventory_bag = i
+               # for num, action in enumerate(inventory_bag):
+                   # print(str(num + 1) + ": " + action)
             elif cmd == 4:
                 print()
                 if mod == 0:
@@ -209,6 +221,7 @@ class Drinks(Consumable):
 
 
 antoniodoll = Item("Antonio Banderas doll", "A nearly-lifesize blow-up doll of Antonio Banderas")
+dab = Item("dab", "dab")
 
 
 
@@ -272,8 +285,7 @@ bebe = Enemy("Bebe Stevens", "a girl your age with blonde curly hair, wearing a 
 al = Friendly("Big Al", "a man in his late thirties wearing a pink hawaiian T-shirt and constantly smoking a cigar",
               150, 30)
 token = Friendly("Token Black", "a kid your age with an afro, wearing a purple shirt", 100, 25)
-cartmansmom = Friendly("Mrs. Cartman", "A young lady wearing a light-blue blouse", 200, 20, 0, antoniodoll
-tweak = Friendly()
+cartmansmom = Friendly("Mrs. Cartman", "A young lady wearing a light-blue blouse", 200, 20, 0, antoniodoll)
 
 
 # World Map
@@ -303,7 +315,7 @@ class Place(object):
 yourhouse = Place("Your House", "You see a bright red house", None, None, "randomtree", "southparksign",
                   "inside_yourhouse", None, None, None, antoniodoll)
 randomtree = Place("Random Tree", "You see a random tree", None, None, "buttershouse", "yourhouse",
-                   "inside_buttershouse", None, None)
+                   "inside_buttershouse", None, None, None, dab)
 buttershouse = Place("Butters\'house", "You see a red brownish house", None, None, "cartmanshouse", "randomtree",
                      "inside_buttershouse", None, None, butters)
 cartmanshouse = Place("Cartman\'s house", "You see a bright green house", None, None, "stanshouse", "buttershouse",
@@ -377,7 +389,9 @@ inside_yourhouse = Place("Inside Your House""You see a good-sized family room wi
 
 # Controller
 
-
+itemcom = ["grab", "take", "pickup", "pick up"]
+bagcom = ["bag", "inventory", "inv", "i"]
+fightcom = ["fight", "attack"]
 directions = ["north", "south", "east", "west", "enter", "exit", "up", "down"]
 shortened = ["n", "s", "e", "w", "in", "out", "u", "d"]
 currentnode = yourhouse
@@ -402,7 +416,10 @@ while you.health > 0:
             currentnode.move(command)
         except KeyError:
             print("You can\'t go that way")
-    elif "fight" or "attack" in command:
+    elif command in bagcom:
+        print("You open your bag")
+        inventory()
+    elif command in fightcom:
         if currentnode.character is not None:
             print("You challenge %s" % currentnode.character.name)
         if currentnode.character is not None and isinstance(currentnode.character, Enemy):
@@ -412,9 +429,12 @@ while you.health > 0:
                 print("There is nobody here willing to fight. \nDon\'t be mean like that")
             else:
                 print("There is nobody here. \nIf someone was here, they'd laugh at you")
-    elif "inventory" in command:
-        print("You open your bag")
-        inventory()
+    elif command in itemcom:
+        if currentnode.item is not None:
+            print("You picked up %s" % currentnode.item.name)
+            inv.append(currentnode.item)
+        else:
+            print("There are no items to pick up")
 
     elif "description" in command:
         if currentnode.character:
