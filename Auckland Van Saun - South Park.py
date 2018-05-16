@@ -35,6 +35,14 @@ def game_over():
     quit(0)
 
 
+def drop():
+    print("%s drops %s" % (currentnode.character.enemy.name, currentnode.character.enemy.item))
+    if currentnode.character.item is not None:
+        currentnode.item.append(currentnode.character.enemy.item)
+    else:
+        print()
+
+
 def inventory():
     closebag = 0
     clear_screen()
@@ -85,11 +93,11 @@ def fight(enemy):
                 you.attack(enemy)
             elif cmd == 2:
                 print("You do nothing")
-            # elif cmd ==3:
-               # print("\"Open\'s bag\"")
-               # inventory_bag = i
-               # for num, action in enumerate(inventory_bag):
-                   # print(str(num + 1) + ": " + action)
+            elif cmd == 3:
+                print("\"Open\'s bag\"")
+                inventory_bag = inv
+                for num, action in enumerate(inventory_bag):
+                    print(str(num + 1) + ": " + action)
             elif cmd == 4:
                 print()
                 if mod == 0:
@@ -113,6 +121,8 @@ def fight(enemy):
                     game_over()
             if enemy.health <= 0:
                 print("%s has been defeated\n" % enemy.name)
+                if enemy.item is not None:
+                    drop()
 
 
 # Items
@@ -221,8 +231,6 @@ class Drinks(Consumable):
 
 
 antoniodoll = Item("Antonio Banderas doll", "A nearly-lifesize blow-up doll of Antonio Banderas")
-dab = Item("dab", "dab")
-
 
 
 # Characters
@@ -272,8 +280,8 @@ class Friendly(Character):
 you = Character("You", "You are wearing a white sleeveless coat and wearing a backwards baseball cap",
                 175, 20)
 cartman = Enemy("Eric Cartman", "a fat kid your age, wearing a red coat and a blue poofball hood",
-                125, 20)
-stan = Friendly("Stan Marsh", "a kid your age, wearing a brown coat with a blue hat", None, 100, 25)
+                125, 20, 0, antoniodoll)
+stan = Friendly("Stan Marsh", "a kid your age, wearing a brown coat with a blue hat", 100, 25)
 kyle = Friendly("Kyle Broflovski", "a kid your age wearing a green coat with an orange hat", None, 100, 30)
 kenny = Enemy("Kenny McCormick", "a kid your age wearing an orange coat with the hood covering most of his face",
               85, 40)
@@ -285,7 +293,7 @@ bebe = Enemy("Bebe Stevens", "a girl your age with blonde curly hair, wearing a 
 al = Friendly("Big Al", "a man in his late thirties wearing a pink hawaiian T-shirt and constantly smoking a cigar",
               150, 30)
 token = Friendly("Token Black", "a kid your age with an afro, wearing a purple shirt", 100, 25)
-cartmansmom = Friendly("Mrs. Cartman", "A young lady wearing a light-blue blouse", 200, 20, 0, antoniodoll)
+cartmansmom = Friendly("Mrs. Cartman", "young lady wearing a light-blue blouse", 150, 15, 0, antoniodoll)
 
 
 # World Map
@@ -313,13 +321,13 @@ class Place(object):
 
 
 yourhouse = Place("Your House", "You see a bright red house", None, None, "randomtree", "southparksign",
-                  "inside_yourhouse", None, None, None, antoniodoll)
+                  "inside_yourhouse", None, None, None)
 randomtree = Place("Random Tree", "You see a random tree", None, None, "buttershouse", "yourhouse",
-                   "inside_buttershouse", None, None, None, dab)
+                   "inside_buttershouse", None, None, cartman)
 buttershouse = Place("Butters\'house", "You see a red brownish house", None, None, "cartmanshouse", "randomtree",
                      "inside_buttershouse", None, None, butters)
 cartmanshouse = Place("Cartman\'s house", "You see a bright green house", None, None, "stanshouse", "buttershouse",
-                      "inside_cartmanshouse", None, None, cartman)
+                      "inside_cartmanshouse", None, None, cartmansmom)
 stanshouse = Place("Stan\'s house", "You see a dark green house", None, None, "kyleshouse", "cartmanshouse",
                    "insidestanshouse", None, None, stan)
 kyleshouse = Place("Kyle\'s house", "You see a moss green house", None, None, "stonepath", "stanshouse",
@@ -408,27 +416,31 @@ while you.health > 0:
     clear_screen()
     if command == "quit":
         quit(0)
+
     elif command in shortened:
         location = shortened.index(command)
         command = directions[location]
+
     if command in directions:
         try:
             currentnode.move(command)
         except KeyError:
             print("You can\'t go that way")
+
     elif command in bagcom:
         print("You open your bag")
         inventory()
+
     elif command in fightcom:
-        if currentnode.character is not None:
-            print("You challenge %s" % currentnode.character.name)
         if currentnode.character is not None and isinstance(currentnode.character, Enemy):
+            print("You challenge %s" % currentnode.character.name)
             fight(currentnode.character)
         else:
-            if currentnode.character is not None and isinstance(currentnode.character, Friendly):
+            if currentnode.character is not None and isinstance is currentnode.character.friendly:
                 print("There is nobody here willing to fight. \nDon\'t be mean like that")
             else:
                 print("There is nobody here. \nIf someone was here, they'd laugh at you")
+
     elif command in itemcom:
         if currentnode.item is not None:
             print("You picked up %s" % currentnode.item.name)
@@ -439,11 +451,16 @@ while you.health > 0:
     elif "description" in command:
         if currentnode.character:
             print("You see a %s named %s" % (currentnode.character.description, currentnode.character.name))
+            clear_screen()
+
     elif command == "look":
         if currentnode.item is not None:
             if currentnode.item.name[0].lower() in ['a', 'e', 'i', 'o', 'u']:
                 print("You see an %s in the room" % currentnode.item.name)
+                clear_screen()
             else:
                 print("You see a %s in the room" % currentnode.item.name)
+                clear_screen()
+
     else:
         print("Command not recognized")
