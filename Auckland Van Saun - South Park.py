@@ -36,9 +36,10 @@ def game_over():
 
 
 def drop():
-    print("%s drops %s" % (currentnode.character.enemy.name, currentnode.character.enemy.item))
     if currentnode.character.item is not None:
-        currentnode.item.append(currentnode.character.enemy.item)
+        print("%s drops %s" % (currentnode.character.name, currentnode.character.item.name))
+        currentnode.item = currentnode.character.item
+        clear_screen()
     else:
         print()
 
@@ -123,6 +124,8 @@ def fight(enemy):
                 print("%s has been defeated\n" % enemy.name)
                 if enemy.item is not None:
                     drop()
+                else:
+                    print("%s had no treasures to drop" % enemy.name)
 
 
 # Items
@@ -282,7 +285,7 @@ you = Character("You", "You are wearing a white sleeveless coat and wearing a ba
 cartman = Enemy("Eric Cartman", "a fat kid your age, wearing a red coat and a blue poofball hood",
                 125, 20, 0, antoniodoll)
 stan = Friendly("Stan Marsh", "a kid your age, wearing a brown coat with a blue hat", 100, 25)
-kyle = Friendly("Kyle Broflovski", "a kid your age wearing a green coat with an orange hat", None, 100, 30)
+kyle = Friendly("Kyle Broflovski", "a kid your age wearing a green coat with an orange hat", 100, 30)
 kenny = Enemy("Kenny McCormick", "a kid your age wearing an orange coat with the hood covering most of his face",
               85, 40)
 butters = Friendly("Butters Stotch", "a kid your age wearing a light-blue coat", 90, 25)
@@ -410,7 +413,8 @@ while you.health > 0:
     print(currentnode.description)
 
     if currentnode.character is not None:
-        print("You see %s" % currentnode.character.name)
+        if currentnode.character.health > 0:
+            print("You see %s" % currentnode.character.name)
 
     command = input(">_").lower().strip()
     clear_screen()
@@ -432,19 +436,21 @@ while you.health > 0:
         inventory()
 
     elif command in fightcom:
-        if currentnode.character is not None and isinstance(currentnode.character, Enemy):
+        if currentnode.character is not None and isinstance(currentnode.character, Enemy) \
+                and currentnode.character.health > 0:
             print("You challenge %s" % currentnode.character.name)
             fight(currentnode.character)
+            currentnode.character = None
         else:
-            if currentnode.character is not None and isinstance is currentnode.character.friendly:
-                print("There is nobody here willing to fight. \nDon\'t be mean like that")
-            else:
+            if currentnode.character is None:
                 print("There is nobody here. \nIf someone was here, they'd laugh at you")
-
+            else:
+                print("There is nobody here willing to fight. \nDon\'t be mean like that")
     elif command in itemcom:
         if currentnode.item is not None:
             print("You picked up %s" % currentnode.item.name)
             inv.append(currentnode.item)
+            currentnode.item = None
         else:
             print("There are no items to pick up")
 
@@ -461,6 +467,7 @@ while you.health > 0:
             else:
                 print("You see a %s in the room" % currentnode.item.name)
                 clear_screen()
-
+        else:
+            print("You see nothing out og the ordinary")
     else:
         print("Command not recognized")
