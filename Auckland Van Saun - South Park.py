@@ -181,7 +181,7 @@ class Sword(Attack):
     def __init__(self, name, description, stats, damage):
         super(Sword, self).__init__(name, description, stats, damage)
 
-    def stab(self):
+    def Stab(self):
         print("You stab %s" % currentnode.character.name)
 
 
@@ -408,7 +408,8 @@ shortened = ["n", "s", "e", "w", "in", "out", "u", "d"]
 currentnode = yourhouse
 
 while you.health > 0:
-    # print()
+
+    print("Type in \"Directions\" to see where you can go")
     print(currentnode.name)
     print(currentnode.description)
 
@@ -458,6 +459,19 @@ while you.health > 0:
         if currentnode.character:
             print("You see a %s named %s" % (currentnode.character.description, currentnode.character.name))
             clear_screen()
+
+    elif "directions" in command:
+        print("YOu can go:\n")
+
+        if currentnode.north is not None:
+            print("North")
+        if currentnode.south is not None:
+            print("South")
+        if currentnode.east is not None:
+            print("East")
+        if currentnode.west is not None:
+            print("West")
+        clear_screen()
 
     elif command == "look":
         if currentnode.item is not None:
