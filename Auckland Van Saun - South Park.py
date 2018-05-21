@@ -48,19 +48,22 @@ def inventory():
     closebag = 0
     clear_screen()
     while closebag == 0:
-        print("The items in your inventory include : ")
+        print("The items in your bag are : ")
         for itemname in inv:
             print(" - %s" % itemname.name)
+            print()
         bag_commands = ["Give", "Close"]
         for num, action in enumerate(bag_commands):
             print(str(num + 1) + ": " + action)
         try:
             cmd = int(input(">_"))
             if cmd == 1:
-                print("Ill make this command later")
+                print("You give %s to %s" % ( , currentnode.character))
+
             elif cmd == 2:
                 print("You closed the bag")
                 closebag += 1
+                clear_screen()
             elif cmd > len(bag_commands) or cmd < 0:
                 raise NumberError
 
@@ -283,7 +286,7 @@ class Friendly(Character):
 you = Character("You", "You are wearing a white sleeveless coat and wearing a backwards baseball cap",
                 175, 20)
 cartman = Enemy("Eric Cartman", "a fat kid your age, wearing a red coat and a blue poofball hood",
-                125, 20, 0, antoniodoll)
+                125, 20)
 stan = Friendly("Stan Marsh", "a kid your age, wearing a brown coat with a blue hat", 100, 25)
 kyle = Friendly("Kyle Broflovski", "a kid your age wearing a green coat with an orange hat", 100, 30)
 kenny = Enemy("Kenny McCormick", "a kid your age wearing an orange coat with the hood covering most of his face",
@@ -397,7 +400,6 @@ bar = Place("Skeeter\'s Wine Bar", "You see a swamp-green building with dark-tin
 inside_yourhouse = Place("Inside Your House""You see a good-sized family room with a couch  and a TV", None, None, None,
                          None, None, None, None, None, None, "yourhouse")
 
-
 # Controller
 
 itemcom = ["grab", "take", "pickup", "pick up"]
@@ -410,6 +412,7 @@ currentnode = yourhouse
 while you.health > 0:
 
     print("Type in \"Directions\" to see where you can go")
+    print()
     print(currentnode.name)
     print(currentnode.description)
 
@@ -447,13 +450,20 @@ while you.health > 0:
                 print("There is nobody here. \nIf someone was here, they'd laugh at you")
             else:
                 print("There is nobody here willing to fight. \nDon\'t be mean like that")
+
     elif command in itemcom:
         if currentnode.item is not None:
             print("You picked up %s" % currentnode.item.name)
             inv.append(currentnode.item)
             currentnode.item = None
+        elif isinstance(currentnode.character, Friendly):
+            if currentnode.character.item is not None:
+                print("%s gave you %s" % (currentnode.character.name, currentnode.character.item.name))
+                inv.append(currentnode.character.item)
+            else:
+                print ("%s has no items to give" % currentnode.character.name)
         else:
-            print("There are no items to pick up")
+            print("There are no items in this room")
 
     elif "description" in command:
         if currentnode.character:
@@ -461,7 +471,7 @@ while you.health > 0:
             clear_screen()
 
     elif "directions" in command:
-        print("YOu can go:\n")
+        print("You can go:\n")
 
         if currentnode.north is not None:
             print("North")
@@ -482,6 +492,7 @@ while you.health > 0:
                 print("You see a %s in the room" % currentnode.item.name)
                 clear_screen()
         else:
-            print("You see nothing out og the ordinary")
+            print("You see nothing out of the ordinary")
+            clear_screen()
     else:
         print("Command not recognized")
