@@ -9,19 +9,131 @@
 -controller
 
 """
+import random
+
+
+inv = []
+
+
+def clear_screen():
+    print("_________________________________________________________________________")
+    print("")
+
+
+class NumberError(Exception):
+    def __init__(self):
+        super(NumberError, self).__init__()
+
+
+def game_over():
+    print("   _____          __  __ ______    ______      ________ _____  _\n"
+          "  / ____|   /\   |  \/  |  ____|  / __ \ \    / /  ____|  __ \| |\n"
+          " | |  __   /  \  | \  / | |__    | |  | \ \  / /| |__  | |__) | |\n"
+          " | | |_ | / /\ \ | |\/| |  __|   | |  | |\ \/ / |  __| |  _  /| |\n"
+          " | |__| |/ ____ \| |  | | |____  | |__| | \  /  | |____| | \ \|_|\n"
+          "  \_____/_/    \_\_|  |_|______|  \____/   \/   |______|_|  \_(_)\n")
+    quit(0)
+
+
+def drop():
+    if currentnode.character.item is not None:
+        print("%s drops %s" % (currentnode.character.name, currentnode.character.item.name))
+        currentnode.item = currentnode.character.item
+        clear_screen()
+    else:
+        print()
+
+
+def inventory():
+    closebag = 0
+    clear_screen()
+    while closebag == 0:
+        print("The items in your bag are : ")
+        for itemname in inv:
+            print(" - %s" % itemname.name)
+            print()
+        bag_commands = ["Give", "Close"]
+        for num, action in enumerate(bag_commands):
+            print(str(num + 1) + ": " + action)
+        try:
+            cmd = int(input(">_"))
+            if cmd == 1:
+                print("You give %s to %s" % ( , currentnode.character))
+
+            elif cmd == 2:
+                print("You closed the bag")
+                closebag += 1
+                clear_screen()
+            elif cmd > len(bag_commands) or cmd < 0:
+                raise NumberError
+
+        except ValueError:
+            print("That is not a number")
+            continue
+        except NumberError:
+            print("Invalid number")
+            continue
 
 
 def fight(enemy):
+    endloop = 0
+    clear_screen()
     print("You have %d health left" % you.health)
     print("%s has %d health left" % (enemy.name, enemy.health))
-    while you.health > 0 and enemy.health > 0:
-        cmd = input(">_")
-        if cmd == 'attack':
-            you.attack(enemy)
-        enemy.attack(you)
+    while you.health > 0 and enemy.health > 0 and endloop == 0:
+        randomnumber = random.randint(1, 10)
+        mod = randomnumber % 2
+        print("What do you want to do?")
+        attack_commands = ["Attack", "Do nothing", "Use item", "Run"]
+        for num, action in enumerate(attack_commands):
+            print(str(num + 1) + ": " + action)
+        print("\n" * 1)
+        print("_________________________________________________________________________")
+        print("")
+        try:
+            cmd = int(input(">_"))
+            clear_screen()
+            if cmd == 1:
+                you.attack(enemy)
+            elif cmd == 2:
+                print("You do nothing")
+            elif cmd == 3:
+                print("\"Open\'s bag\"")
+                inventory_bag = inv
+                for num, action in enumerate(inventory_bag):
+                    print(str(num + 1) + ": " + action)
+            elif cmd == 4:
+                print()
+                if mod == 0:
+                    print("You got away safely")
+                    endloop += 1
+                else:
+                    print("You were unable to escape")
+            elif cmd > len(attack_commands) or cmd < 0:
+                raise NumberError
+        except ValueError:
+            print("That is not a number")
+            continue
+        except NumberError:
+            print("Invalid number")
+            continue
+        if endloop == 0:
+            if enemy.health > 0:
+                enemy.attack(you)
+                if you.health <= 0:
+                    print("You have died at the hands of %s\n" % enemy.name)
+                    game_over()
+            if enemy.health <= 0:
+                print("%s has been defeated\n" % enemy.name)
+                if enemy.item is not None:
+                    drop()
+                else:
+                    print("%s had no treasures to drop" % enemy.name)
 
 
 # Items
+
+
 class Item(object):
     def __init__(self, name, description):
         self.name = name
@@ -37,7 +149,7 @@ class Combat(Item):
 class Defend(Combat):
     def __init__(self, name, description, stats, armor):
         super(Defend, self).__init__(name, description, stats)
-        self.amor = armor
+        self.armor = armor
 
 
 class Attack(Combat):
@@ -72,21 +184,72 @@ class Sword(Attack):
     def __init__(self, name, description, stats, damage):
         super(Sword, self).__init__(name, description, stats, damage)
 
-    def stab(self):
-        print("You stab %s")
+    def Stab(self):
+        print("You stab %s" % currentnode.character.name)
+
+
+class Shield(Defend):
+    def __init__(self, name, description, stats, armor):
+        super(Shield, self).__init__(name, description, stats, armor)
+
+
+class Helmet(Defend):
+    def __init__(self, name, description, stats, armor):
+        super(Helmet, self).__init__(name, description, stats, armor)
+
+
+class Misc(Item):
+    def __init__(self, name, description):
+        super(Misc, self).__init__(name, description)
+
+
+class Cosmetic(Misc):
+    def __init__(self, name, description):
+        super(Cosmetic, self).__init__(name, description)
+
+
+class Hidden(Misc):
+    def __init__(self, name, description):
+        super(Hidden, self).__init__(name, description)
+
+
+class Consumable(Item):
+    def __init__(self, name, description):
+        super(Consumable, self).__init__(name, description)
+
+
+class Heals(Consumable):
+    def __init__(self, name, description, health=0):
+        super(Heals, self).__init__(name, description)
+        self.health = health
+
+    def heal(self):
+        print("You have healed yourself for %d health" % self.health)
+
+
+class Drinks(Consumable):
+    def __init__(self, name, description, shield=0):
+        super(Consumable, self).__init__(name, description)
+        self.shield = shield
+
+    def drink(self):
+        print("You have shielded yourself for %d ammount of damage" % self.shield)
+
+
+antoniodoll = Item("Antonio Banderas doll", "A nearly-lifesize blow-up doll of Antonio Banderas")
 
 
 # Characters
 
 
 class Character(object):
-    def __init__(self, name, description, item, health, stats, armor=0):
+    def __init__(self, name, description, health, stats, armor=0, item=None):
         self.name = name
         self.description = description
-        self.item = item
         self.health = health
         self.stats = stats
         self.armor = armor
+        self.item = item
 
     def takedamage(self, amount):
         dmg = amount - self.armor
@@ -94,47 +257,57 @@ class Character(object):
             dmg = 0
             print("The attack was not very effective...")
         self.health -= dmg
-        print("%s has %d hp left" % (self.name, self.health))
+        if self.health < 0:
+            self.health = 0
+        if self.name == "You":
+            print("You have %d hp left" % self.health)
+        else:
+            print("%s has %d hp left" % (self.name, self.health))
 
     def attack(self, target):
-        print("%s attacks %s" % (self.name, target.name))
+        if self.name == "You":
+            print("You attack %s" % target.name)
+        else:
+            print("%s attacks %s" % (self.name, target.name))
         target.takedamage(self.stats)
         print()
 
 
 class Enemy(Character):
-    def __init__(self, name, description, item, health, stats, armor=0):
-        super(Enemy, self).__init__(name, description, item, health, stats, armor)
+    def __init__(self, name, description, health, stats, armor=0, item=None):
+        super(Enemy, self).__init__(name, description, health, stats, armor, item)
 
 
 class Friendly(Character):
-    def __init__(self, name, description, item, health, stats, armor=0):
-        super(Friendly, self).__init__(name, description, item, health, stats, armor)
+    def __init__(self, name, description, health, stats, armor=0, item=None):
+        super(Friendly, self).__init__(name, description, health, stats, armor, item)
 
 
 you = Character("You", "You are wearing a white sleeveless coat and wearing a backwards baseball cap",
-                None, 175, 20)
-cartman = Enemy("Eric Cartman", "a fat kid your age, wearing a red coat and a blue poofball hood", None,
-                    125, 20)
-stan = Friendly("Stan Marsh", "a kid your age, wearing a brown coat with a blue hat", None, 100, 25)
-kyle = Friendly("Kyle Broflovski", "a kid your age wearing a green coat with an orange hat", None, 100, 30)
+                175, 20)
+cartman = Enemy("Eric Cartman", "a fat kid your age, wearing a red coat and a blue poofball hood",
+                125, 20)
+stan = Friendly("Stan Marsh", "a kid your age, wearing a brown coat with a blue hat", 100, 25)
+kyle = Friendly("Kyle Broflovski", "a kid your age wearing a green coat with an orange hat", 100, 30)
 kenny = Enemy("Kenny McCormick", "a kid your age wearing an orange coat with the hood covering most of his face",
-                  None, 85, 40)
-butters = Friendly("Butters Stotch", "a kid your age wearing a light-blue coat", None, 90, 25)
-jimmy = Enemy("Jimmy Valmer", "a kid your age with crutches wearing a yellow shirt", None, 140, 40)
-craig = Friendly("Craig Tucker", "a kid your age weaing a blue coat, with a matching blue hood", None, 100, 30)
-clyde = Enemy("Clyde Donovan", "a kid your age wearing a red and blue coat", None, 100, 25)
-bebe = Enemy("Bebe Stevens", "a girl your age with blonde curly hair, wearing a bright red coat", None, 120, 20)
+              85, 40)
+butters = Friendly("Butters Stotch", "a kid your age wearing a light-blue coat", 90, 25)
+jimmy = Enemy("Jimmy Valmer", "a kid your age with crutches wearing a yellow shirt", 140, 40)
+craig = Friendly("Craig Tucker", "a kid your age weaing a blue coat, with a matching blue hood", 100, 30)
+clyde = Enemy("Clyde Donovan", "a kid your age wearing a red and blue coat", 100, 25)
+bebe = Enemy("Bebe Stevens", "a girl your age with blonde curly hair, wearing a bright red coat", 120, 20)
 al = Friendly("Big Al", "a man in his late thirties wearing a pink hawaiian T-shirt and constantly smoking a cigar",
-              None, 150, 30)
-token = Friendly("Token Black", "a kid your age with an afro, wearing a purple shirt", None, 100, 25)
+              150, 30)
+token = Friendly("Token Black", "a kid your age with an afro, wearing a purple shirt", 100, 25)
+cartmansmom = Friendly("Mrs. Cartman", "young lady wearing a light-blue blouse", 150, 15, 0, antoniodoll)
 
 
 # World Map
 
 
 class Place(object):
-    def __init__(self, name, description, north, south, east, west, enter, up, down, character=None):
+    def __init__(self, name, description, north, south, east, west, enter, up, down, character=None, item=None,
+                 leave=None):
         self.name = name
         self.description = description
         self.north = north
@@ -145,6 +318,8 @@ class Place(object):
         self.up = up
         self.down = down
         self.character = character
+        self.item = item
+        self.exit = leave
 
     def move(self, direction):
         global currentnode
@@ -152,13 +327,13 @@ class Place(object):
 
 
 yourhouse = Place("Your House", "You see a bright red house", None, None, "randomtree", "southparksign",
-                  "inside_yourhouse", None, None)
+                  "inside_yourhouse", None, None, None)
 randomtree = Place("Random Tree", "You see a random tree", None, None, "buttershouse", "yourhouse",
-                   "inside_buttershouse", None, None)
+                   "inside_buttershouse", None, None, cartman)
 buttershouse = Place("Butters\'house", "You see a red brownish house", None, None, "cartmanshouse", "randomtree",
                      "inside_buttershouse", None, None, butters)
 cartmanshouse = Place("Cartman\'s house", "You see a bright green house", None, None, "stanshouse", "buttershouse",
-                      "inside_cartmanshouse", None, None, cartman)
+                      "inside_cartmanshouse", None, None, cartmansmom)
 stanshouse = Place("Stan\'s house", "You see a dark green house", None, None, "kyleshouse", "cartmanshouse",
                    "insidestanshouse", None, None, stan)
 kyleshouse = Place("Kyle\'s house", "You see a moss green house", None, None, "stonepath", "stanshouse",
@@ -170,8 +345,8 @@ traintracks = Place("Train Tracks", "You see train tracks almost hidden under a 
 sodosopa = Place("Sodosopa", "You see a broken down, olive green house, surrounded almost completely by what seems "
                              "to be a modernized restaurant",
                  None, None, None, "traintracks", "insidekennyshouse", "insidesodosopa", None, kenny)
-southparksign = Place("SouthPark Sign", "You see a sign that says \"South Park\" \non your left lies a road\n"
-                                        "beyond the road you see a bus stop",
+southparksign = Place("SouthPark Sign", "You see a sign that says \"South Park\" \nOn your left lies a road\n"
+                                        "Beyond the road you see a bus stop",
                       None, None, "yourhouse", "road", None, None, None)
 road = Place("Road", "A road blocks your path", None, None, "southparksign", "busstop", None, None, None)
 busstop = Place("Bus Stop", "You see the local elementary school's bus stop", None, None, "road", "jimmyshouse",
@@ -222,39 +397,106 @@ gunstore = Place("Jimbo\'s Guns", "You see a crimson red building with many uniq
                  "chinesefood", "bar", "insidegunstore", None, None)
 bar = Place("Skeeter\'s Wine Bar", "You see a swamp-green building with dark-tinted buildings", None, "church",
             "gunstore", None, "insidebar", None, None)
-
+inside_yourhouse = Place("Inside Your House""You see a good-sized family room with a couch  and a TV", None, None, None,
+                         None, None, None, None, None, None, "yourhouse")
 
 # Controller
 
-
-directions = ["north", "south", "east", "west", "enter", "up", "down"]
-shortened = ["n", "s", "e", "w", "in", "u", "d"]
+itemcom = ["grab", "take", "pickup", "pick up"]
+bagcom = ["bag", "inventory", "inv", "i"]
+fightcom = ["fight", "attack"]
+directions = ["north", "south", "east", "west", "enter", "exit", "up", "down"]
+shortened = ["n", "s", "e", "w", "in", "out", "u", "d"]
 currentnode = yourhouse
-while True:
+
+while you.health > 0:
+
+    print("Type in \"Directions\" to see where you can go")
+    print()
     print(currentnode.name)
     print(currentnode.description)
+
+    if currentnode.character is not None:
+        if currentnode.character.health > 0:
+            print("You see %s" % currentnode.character.name)
+
     command = input(">_").lower().strip()
+    clear_screen()
     if command == "quit":
         quit(0)
+
     elif command in shortened:
         location = shortened.index(command)
         command = directions[location]
+
     if command in directions:
         try:
             currentnode.move(command)
         except KeyError:
             print("You can\'t go that way")
-    elif "attack" in command:
-        if currentnode.character is not None and isinstance(currentnode.character, Enemy):
+
+    elif command in bagcom:
+        print("You open your bag")
+        inventory()
+
+    elif command in fightcom:
+        if currentnode.character is not None and isinstance(currentnode.character, Enemy) \
+                and currentnode.character.health > 0:
+            print("You challenge %s" % currentnode.character.name)
             fight(currentnode.character)
+            currentnode.character = None
         else:
-            if currentnode.character is not None and isinstance(currentnode.character, Friendly):
-                print("There is nobody here willing to fight. \nDon\'t be mean like that")
-            else:
+            if currentnode.character is None:
                 print("There is nobody here. \nIf someone was here, they'd laugh at you")
+            else:
+                print("There is nobody here willing to fight. \nDon\'t be mean like that")
+
+    elif command in itemcom:
+        if currentnode.item is not None:
+            print("You picked up %s" % currentnode.item.name)
+            inv.append(currentnode.item)
+            currentnode.item = None
+        elif isinstance(currentnode.character, Friendly):
+            if currentnode.character.item is not None:
+                print("%s gave you %s" % (currentnode.character.name, currentnode.character.item.name))
+                inv.append(currentnode.character.item)
+            else:
+                print ("%s has no items to give" % currentnode.character.name)
+        else:
+            print("There are no items in this room")
+
     elif "description" in command:
+<<<<<<< HEAD
         # print("%s" % currentnode.description)
+=======
+>>>>>>> 3e51524e9893d598a397afc0bff8b45ca52c0dc2
         if currentnode.character:
             print("You see a %s named %s" % (currentnode.character.description, currentnode.character.name))
+            clear_screen()
+
+    elif "directions" in command:
+        print("You can go:\n")
+
+        if currentnode.north is not None:
+            print("North")
+        if currentnode.south is not None:
+            print("South")
+        if currentnode.east is not None:
+            print("East")
+        if currentnode.west is not None:
+            print("West")
+        clear_screen()
+
+    elif command == "look":
+        if currentnode.item is not None:
+            if currentnode.item.name[0].lower() in ['a', 'e', 'i', 'o', 'u']:
+                print("You see an %s in the room" % currentnode.item.name)
+                clear_screen()
+            else:
+                print("You see a %s in the room" % currentnode.item.name)
+                clear_screen()
+        else:
+            print("You see nothing out of the ordinary")
+            clear_screen()
     else:
         print("Command not recognized")

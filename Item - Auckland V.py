@@ -57,3 +57,44 @@ class Shield(Defend):
         super(Shield, self).__init__(name, description, stats, armor)
 
 
+class Helmet(Defend):
+    def __init__(self, name, description, stats, armor):
+        super(Helmet, self).__init__(name, description, stats, armor)
+
+
+class Misc(Item):
+    def __init__(self, name, description):
+        super(Misc, self).__init__(name, description)
+
+
+class Cosmetic(Misc):
+    def __init__(self, name, description):
+        super(Cosmetic, self).__init__(name, description)
+
+
+class Hidden(Misc):
+    def __init__(self, name, description):
+        super(Hidden, self).__init__(name, description)
+
+
+class Consumable(Item):
+    def __init__(self, name, description):
+        super(Consumable, self).__init__(name, description)
+
+
+class Heals(Consumable):
+    def __init__(self, name, description, health=0):
+        super(Heals, self).__init__(name, description)
+        self.health = health
+
+    def heal(self):
+        print("You have healed yourself for %d health" % self.health)
+
+
+class Drinks(Consumable):
+    def __init__(self, name, description, shield=0):
+        super(Consumable, self).__init__(name, description)
+        self.shield = shield
+
+    def drink(self):
+        print("You have shielded yourself for %d ammount of damage" % self.shield)

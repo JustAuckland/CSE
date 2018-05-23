@@ -23,12 +23,17 @@
         <entry file="file://$PROJECT_DIR$/Auckland Van Saun - South Park.py">
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+            <state relative-caret-position="832">
+              <caret line="99" column="23" lean-forward="false" selection-start-line="99" selection-start-column="23" selection-end-line="99" selection-end-column="23" />
+=======
+<<<<<<< HEAD
             <state relative-caret-position="1153">
               <caret line="248" column="0" lean-forward="false" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
 =======
             <state relative-caret-position="-284">
               <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
 >>>>>>> de191da65d790ba7c3eca4fc08ece1e8aa8ee77a
+>>>>>>> da6f9bf990d10f638264095fb42bd480f7a983d2
               <folding />
             </state>
           </provider>
@@ -37,7 +42,11 @@
       <file leaf-file-name="Item - Auckland V.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Item - Auckland V.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="1617">
+=======
             <state relative-caret-position="833">
+>>>>>>> da6f9bf990d10f638264095fb42bd480f7a983d2
               <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
               <folding />
             </state>
@@ -169,8 +178,12 @@
     <panes>
 <<<<<<< HEAD
       <pane id="Scratches" />
+<<<<<<< HEAD
+      <pane id="Scope" />
+=======
 =======
 >>>>>>> de191da65d790ba7c3eca4fc08ece1e8aa8ee77a
+>>>>>>> da6f9bf990d10f638264095fb42bd480f7a983d2
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -182,11 +195,14 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
       <pane id="Scope" />
 <<<<<<< HEAD
 =======
       <pane id="Scratches" />
 >>>>>>> de191da65d790ba7c3eca4fc08ece1e8aa8ee77a
+>>>>>>> da6f9bf990d10f638264095fb42bd480f7a983d2
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -720,28 +736,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/World Map OOF - Auckland Van Saun.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="1617">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+=======
         <state relative-caret-position="1605">
           <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+>>>>>>> da6f9bf990d10f638264095fb42bd480f7a983d2
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Auckland Van Saun - South Park.py">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+        <state relative-caret-position="1605">
+          <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+=======
+<<<<<<< HEAD
         <state relative-caret-position="1153">
           <caret line="248" column="0" lean-forward="false" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
           <folding />
+>>>>>>> da6f9bf990d10f638264095fb42bd480f7a983d2
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Item - Auckland V.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="832">
+          <caret line="99" column="23" lean-forward="false" selection-start-line="99" selection-start-column="23" selection-end-line="99" selection-end-column="23" />
+=======
         <state relative-caret-position="833">
           <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
 =======
         <state relative-caret-position="-284">
           <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
 >>>>>>> de191da65d790ba7c3eca4fc08ece1e8aa8ee77a
+>>>>>>> da6f9bf990d10f638264095fb42bd480f7a983d2
           <folding />
         </state>
       </provider>
