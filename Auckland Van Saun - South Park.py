@@ -45,34 +45,58 @@ def drop():
 
 
 def inventory():
+    print()
     closebag = 0
-    clear_screen()
     while closebag == 0:
-        print("The items in your bag are : ")
-        for itemname in inv:
-            print(" - %s" % itemname.name)
-            print()
-        bag_commands = ["Give", "Close"]
-        for num, action in enumerate(bag_commands):
-            print(str(num + 1) + ": " + action)
-        try:
-            cmd = int(input(">_"))
-            if cmd == 1:
-                print("You give %s to %s" % ( , currentnode.character))
+        if len(inv) != 0:
+            print("The items in your bag are : ")
+            for itemname in inv:
+                print(" - %s" % itemname.name)
+                print()
+            bag_commands = ["Give", "Close"]
+            for num, action in enumerate(bag_commands):
+                print(str(num + 1) + ": " + action)
+            try:
+                cmd = int(input(">_"))
+                if cmd == 1:
+                    endbagcom = 0
+                    if endbagcom == 0:
+                        clear_screen()
+                        for num, action in enumerate(inv):
+                            print("What item would you like to give to %s" % currentnode.character.name)
+                            print()
+                            print(str(num + 1) + ": " + action.name)
+                            try:
+                                givecmd = input(">_")
+                                if givecmd == "no" or "none" or "leave" or "exit" or "close" or "back":
+                                    endbagcom += 1
+                                    clear_screen()
+                                elif givecmd == 1:
+                                    print("You give %s to %s")
+                                elif cmd > len(bag_commands) or cmd < 0:
+                                    raise NumberError
 
-            elif cmd == 2:
-                print("You closed the bag")
-                closebag += 1
-                clear_screen()
-            elif cmd > len(bag_commands) or cmd < 0:
-                raise NumberError
+                            except ValueError:
+                                print("That is not a valid response")
+                                continue
 
-        except ValueError:
-            print("That is not a number")
-            continue
-        except NumberError:
-            print("Invalid number")
-            continue
+                elif cmd == 2:
+                    print("You closed the bag")
+                    closebag += 1
+                    clear_screen()
+                elif cmd > len(bag_commands) or cmd < 0:
+                    raise NumberError
+
+            except ValueError:
+                print("That is not a number")
+                continue
+            except NumberError:
+                print("Invalid number")
+                continue
+        else:
+            print("You have nothing in your bag so you decide to close it")
+            closebag += 1
+            clear_screen()
 
 
 def fight(enemy):
@@ -458,21 +482,20 @@ while you.health > 0:
             currentnode.item = None
         elif isinstance(currentnode.character, Friendly):
             if currentnode.character.item is not None:
-                print("%s gave you %s" % (currentnode.character.name, currentnode.character.item.name))
+                print("%s gives you %s" % (currentnode.character.name, currentnode.character.item.name))
                 inv.append(currentnode.character.item)
+                clear_screen()
             else:
                 print ("%s has no items to give" % currentnode.character.name)
         else:
             print("There are no items in this room")
 
     elif "description" in command:
-<<<<<<< HEAD
-        # print("%s" % currentnode.description)
-=======
->>>>>>> 3e51524e9893d598a397afc0bff8b45ca52c0dc2
-        if currentnode.character:
-            print("You see a %s named %s" % (currentnode.character.description, currentnode.character.name))
+        if currentnode.character is not None:
+            print("%s named %s" % (currentnode.character.description, currentnode.character.name))
             clear_screen()
+        else:
+            print("There is nobady here")
 
     elif "directions" in command:
         print("You can go:\n")
