@@ -65,14 +65,15 @@ def inventory():
                         for num, action in enumerate(inv):
                             print("What item would you like to give to %s" % currentnode.character.name)
                             print()
-                            print(str(num + 1) + ": " + action.name)
+                            print("exit" + str(num + 1) + ": " + action.name)
                             try:
                                 givecmd = input(">_")
                                 if givecmd == "no" or "none" or "leave" or "exit" or "close" or "back":
                                     endbagcom += 1
                                     clear_screen()
                                 elif givecmd == 1:
-                                    print("You give %s to %s")
+                                    print("You give %s to %s" % (action.name, currentnode.character.name))
+
                                 elif cmd > len(bag_commands) or cmd < 0:
                                     raise NumberError
 
