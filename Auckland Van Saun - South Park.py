@@ -253,7 +253,7 @@ while True:
             else:
                 print("There is nobody here. \nIf someone was here, they'd laugh at you")
     elif "description" in command:
-        #print("%s" % currentnode.description)
+        # print("%s" % currentnode.description)
         if currentnode.character:
             print("You see a %s named %s" % (currentnode.character.description, currentnode.character.name))
     else:
