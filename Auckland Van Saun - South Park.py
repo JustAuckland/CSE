@@ -65,21 +65,25 @@ def inventory():
                         for num, action in enumerate(inv):
                             print("What item would you like to give to %s" % currentnode.character.name)
                             print()
-                            print("exit" + str(num + 1) + ": " + action.name)
-                            try:
-                                givecmd = input(">_")
-                                if givecmd == "no" or "none" or "leave" or "exit" or "close" or "back":
-                                    endbagcom += 1
-                                    clear_screen()
-                                elif givecmd == 1:
-                                    print("You give %s to %s" % (action.name, currentnode.character.name))
+                            print(str(num + 1) + ": " + action.name)
+                        try:
+                            givecmd = input(">_")
+                            if givecmd == ["no", "none", "leave", "exit", "close", "back"]:
+                                endbagcom += 1
+                                clear_screen()
+                            givecmd = int(givecmd)
+                            if givecmd == 1:
+                                print("You give %s to %s" % (inv[givecmd - 1].name, currentnode.character.name))
+                                inv[givecmd - 1].append(currentnode.character.item)
+                                clear_screen()
+                                endbagcom += 1
 
-                                elif cmd > len(bag_commands) or cmd < 0:
-                                    raise NumberError
+                            elif cmd > len(bag_commands) or cmd < 0:
+                                raise NumberError
 
-                            except ValueError:
-                                print("That is not a valid response")
-                                continue
+                        except ValueError:
+                            print("That is not a valid response")
+                            continue
 
                 elif cmd == 2:
                     print("You closed the bag")
