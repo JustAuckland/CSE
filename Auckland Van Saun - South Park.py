@@ -65,7 +65,7 @@ def inventory():
                         for num, action in enumerate(inv):
                             print("What item would you like to give to %s" % currentnode.character.name)
                             print()
-                            print("exit" + str(num + 1) + ": " + action.name)
+                            print(str(num + 1) + ": " + action.name)
                             try:
                                 givecmd = input(">_")
                                 if givecmd == "no" or "none" or "leave" or "exit" or "close" or "back":
@@ -73,12 +73,14 @@ def inventory():
                                     clear_screen()
                                 elif givecmd == 1:
                                     print("You give %s to %s" % (action.name, currentnode.character.name))
+                                    action.name.append(currentnode.character.item)
 
                                 elif cmd > len(bag_commands) or cmd < 0:
                                     raise NumberError
 
                             except ValueError:
                                 print("That is not a valid response")
+                                clear_screen()
                                 continue
 
                 elif cmd == 2:
@@ -209,7 +211,7 @@ class Sword(Attack):
     def __init__(self, name, description, stats, damage):
         super(Sword, self).__init__(name, description, stats, damage)
 
-    def Stab(self):
+    def stab(self):
         print("You stab %s" % currentnode.character.name)
 
 
@@ -487,13 +489,21 @@ while you.health > 0:
                 inv.append(currentnode.character.item)
                 clear_screen()
             else:
-                print ("%s has no items to give" % currentnode.character.name)
+                print("%s has no items to give" % currentnode.character.name)
         else:
             print("There are no items in this room")
 
     elif "description" in command:
         if currentnode.character is not None:
-            print("%s named %s" % (currentnode.character.description, currentnode.character.name))
+            if currentnode.character.item is not None:
+                if currentnode.item.name[0].lower() in ['a', 'e', 'i', 'o', 'u']:
+                    print("%s named %s holding an %s" % (currentnode.character.description, currentnode.character.name,
+                                                         currentnode.character.item.name))
+                else:
+                    print("%s named %s holding a %s" % (currentnode.character.description, currentnode.character.name,
+                                                        currentnode.character.item.name))
+            else:
+                print("%s named %s" % (currentnode.character.description, currentnode.character.name))
             clear_screen()
         else:
             print("There is nobady here")
