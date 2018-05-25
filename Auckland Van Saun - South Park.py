@@ -45,7 +45,7 @@ def drop():
 
 
 def inventory():
-    print()
+
     closebag = 0
     while closebag == 0:
         if len(inv) != 0:
@@ -62,47 +62,34 @@ def inventory():
                     endbagcom = 0
                     if endbagcom == 0:
                         clear_screen()
-                        for num, action in enumerate(inv):
-                            print("What item would you like to give to %s" % currentnode.character.name)
-                            print()
-                            print(str(num + 1) + ": " + action.name)
-<<<<<<< HEAD
-                            try:
-                                givecmd = input(">_")
-                                if givecmd == "no" or "none" or "leave" or "exit" or "close" or "back":
-                                    endbagcom += 1
-                                    clear_screen()
-                                elif givecmd == 1:
-                                    print("You give %s to %s" % (action.name, currentnode.character.name))
-                                    action.name.append(currentnode.character.item)
-
-                                elif cmd > len(bag_commands) or cmd < 0:
-                                    raise NumberError
-
-                            except ValueError:
-                                print("That is not a valid response")
-                                clear_screen()
-                                continue
-=======
+                        print("Would you like to give the %s to %s?" % (inv[0].name, currentnode.character.name))
+                        print()
+                        simplecommand = ["Yes", "No"]
+                        for num, action in enumerate(simplecommand):
+                            print(str(num + 1) + ": " + action)
                         try:
-                            givecmd = input(">_")
-                            if givecmd == ["no", "none", "leave", "exit", "close", "back"]:
-                                endbagcom += 1
-                                clear_screen()
-                            givecmd = int(givecmd)
+                            givecmd = int(input(">_"))
                             if givecmd == 1:
-                                print("You give %s to %s" % (inv[givecmd - 1].name, currentnode.character.name))
-                                inv[givecmd - 1].append(currentnode.character.item)
                                 clear_screen()
+                                print("You give %s to %s" % (inv[0].name, currentnode.character.name))
+                                currentnode.character.item = inv[0]
+                                inv.remove(inv[0])
                                 endbagcom += 1
+                                clear_screen()
 
-                            elif cmd > len(bag_commands) or cmd < 0:
+                            elif givecmd == 2:
+                                endbagcom += 1
+                                clear_screen()
+
+                            elif cmd > len(simplecommand) or cmd < 0:
                                 raise NumberError
 
                         except ValueError:
-                            print("That is not a valid response")
+                            print("That is not a number")
                             continue
->>>>>>> 0b2c0747e3eff4b899ee6233ddb0d1962b7d13c7
+                        except NumberError:
+                            print("Invalid number")
+                            continue
 
                 elif cmd == 2:
                     print("You closed the bag")
@@ -136,8 +123,7 @@ def fight(enemy):
         for num, action in enumerate(attack_commands):
             print(str(num + 1) + ": " + action)
         print("\n" * 1)
-        print("_________________________________________________________________________")
-        print("")
+        clear_screen()
         try:
             cmd = int(input(">_"))
             clear_screen()
@@ -284,8 +270,17 @@ class Drinks(Consumable):
         print("You have shielded yourself for %d ammount of damage" % self.shield)
 
 
-antoniodoll = Item("Antonio Banderas doll", "A nearly-lifesize blow-up doll of Antonio Banderas")
-
+antoniodoll = Item("Antonio Banderas doll", "A nearly-lifesize doll of Antonio Banderas")
+trapperkeeper = Item("Trapper Keeper", "An all-in-one binder, notebook, folder, calculator, pencil-holder, "
+                                       "and much much more")
+cootiecatcher = Item("Cootie-Catcher", "A future telling device created by the girls, the boys will do anything to get"
+                                       " their hands on this")
+faithcd = Item("Faith +1 CD", "An album created by Eric Carman's christian rock band with Token and Budders")
+stickoftruth = Item("Stick Of Truth", "A mythical item that allows the holder to bring peace to all, said to be a "
+                                      "legend")
+Wizzardhat = Item("Wizzard Hat", "An item that, when in possesion by Cartman, will give him special wizzard-like "
+                                 "powers, like seeing R-rated movies without permission from his mom")
+bassguitar = Item("Bass Guitar", "A guitar famously used by Token while in the band Faith +1")
 
 # Characters
 
@@ -337,17 +332,17 @@ cartman = Enemy("Eric Cartman", "a fat kid your age, wearing a red coat and a bl
                 125, 20)
 stan = Friendly("Stan Marsh", "a kid your age, wearing a brown coat with a blue hat", 100, 25)
 kyle = Friendly("Kyle Broflovski", "a kid your age wearing a green coat with an orange hat", 100, 30)
-kenny = Enemy("Kenny McCormick", "a kid your age wearing an orange coat with the hood covering most of his face",
-              85, 40)
+kenny = Friendly("Kenny McCormick", "a kid your age wearing an orange coat with the hood covering most of his face",
+                 85, 40)
 butters = Friendly("Butters Stotch", "a kid your age wearing a light-blue coat", 90, 25)
-jimmy = Enemy("Jimmy Valmer", "a kid your age with crutches wearing a yellow shirt", 140, 40)
+jimmy = Friendly("Jimmy Valmer", "a kid your age with crutches wearing a yellow shirt", 140, 40)
 craig = Friendly("Craig Tucker", "a kid your age weaing a blue coat, with a matching blue hood", 100, 30)
-clyde = Enemy("Clyde Donovan", "a kid your age wearing a red and blue coat", 100, 25)
-bebe = Enemy("Bebe Stevens", "a girl your age with blonde curly hair, wearing a bright red coat", 120, 20)
+clyde = Friendly("Clyde Donovan", "a kid your age wearing a red and blue coat", 100, 25)
+bebe = Friendly("Bebe Stevens", "a girl your age with blonde curly hair, wearing a bright red coat", 120, 20)
 al = Friendly("Big Al", "a man in his late thirties wearing a pink hawaiian T-shirt and constantly smoking a cigar",
               150, 30)
 token = Friendly("Token Black", "a kid your age with an afro, wearing a purple shirt", 100, 25)
-cartmansmom = Friendly("Mrs. Cartman", "young lady wearing a light-blue blouse", 150, 15, 0, antoniodoll)
+cartmansmom = Friendly("Mrs.Cartman", "young lady wearing a light-blue blouse", 150, 15, 0, antoniodoll)
 
 
 # World Map
@@ -458,7 +453,7 @@ shortened = ["n", "s", "e", "w", "in", "out", "u", "d"]
 currentnode = yourhouse
 
 while you.health > 0:
-
+    print("Type in \"?\" for a list of all commands")
     print("Type in \"Directions\" to see where you can go")
     print()
     print(currentnode.name)
@@ -484,8 +479,12 @@ while you.health > 0:
             print("You can\'t go that way")
 
     elif command in bagcom:
-        print("You open your bag")
-        inventory()
+        if len(inv) == 1:
+            print("You open your bag")
+            inventory()
+        else:
+            print("You have no items in your bag")
+            clear_screen()
 
     elif command in fightcom:
         if currentnode.character is not None and isinstance(currentnode.character, Enemy) \
@@ -501,14 +500,21 @@ while you.health > 0:
 
     elif command in itemcom:
         if currentnode.item is not None:
-            print("You picked up %s" % currentnode.item.name)
-            inv.append(currentnode.item)
+            if len(inv) > 0:
+                print("You can only have one item in your inventory at a time")
+            else:
+                print("You picked up %s" % currentnode.item.name)
+                inv.append(currentnode.item)
             currentnode.item = None
         elif isinstance(currentnode.character, Friendly):
             if currentnode.character.item is not None:
-                print("%s gives you %s" % (currentnode.character.name, currentnode.character.item.name))
-                inv.append(currentnode.character.item)
-                clear_screen()
+                if len(inv) > 0:
+                    print("You can only have one item in your inventory at a time")
+                else:
+                    print("%s gives you %s" % (currentnode.character.name, currentnode.character.item.name))
+                    inv.append(currentnode.character.item)
+                    currentnode.character.item = None
+                    clear_screen()
             else:
                 print("%s has no items to give" % currentnode.character.name)
         else:
@@ -517,7 +523,7 @@ while you.health > 0:
     elif "description" in command:
         if currentnode.character is not None:
             if currentnode.character.item is not None:
-                if currentnode.item.name[0].lower() in ['a', 'e', 'i', 'o', 'u']:
+                if currentnode.character.item.name[0].lower() in ["a", "e", "i", "o", "u"]:
                     print("%s named %s holding an %s" % (currentnode.character.description, currentnode.character.name,
                                                          currentnode.character.item.name))
                 else:
@@ -553,5 +559,24 @@ while you.health > 0:
         else:
             print("You see nothing out of the ordinary")
             clear_screen()
+
+    elif command == "?":
+        print("\"grab\", \"take\", \"pickup\", \"pick up\" : \nPicks up any item on the floor, or in a friendly "
+              "character's inventory")
+        print()
+        print("\"bag\", \"inventory\", \"inv\", \"i\" : \nOpens up your bag / inventory")
+        print()
+        print("\"fight\", \"attack\" : \nInitiates an attack against an enemy")
+        print()
+        print("\"north\"(\"n\"), \"south\"(\"s\") , \"east\"(\"e\", \"west\"(\"w\" : "
+              "\nMovement commands in the map that corrospond to direction")
+        print()
+        print("\"Description\" : \nIdentifies any characters in the room, as long as displays their "
+              "description, name, and any items they may have")
+        print("\"Directions\" : \nShows the possible movement commands from your current location on the map")
+        print()
+        print("\"Look\" : \nShows items in current room")
+        clear_screen()
+
     else:
         print("Command not recognized")
