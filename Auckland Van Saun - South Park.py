@@ -14,6 +14,7 @@ import random
 
 inv = []
 
+close = 0
 
 def clear_screen():
     print("_________________________________________________________________________")
@@ -76,6 +77,7 @@ def inventory():
                                 inv.remove(inv[0])
                                 endbagcom += 1
                                 clear_screen()
+                                specialprocesses()
 
                             elif givecmd == 2:
                                 endbagcom += 1
@@ -163,6 +165,25 @@ def fight(enemy):
                     drop()
                 else:
                     print("%s had no treasures to drop" % enemy.name)
+
+
+def specialprocesses():
+    if currentnode.character == cartman and currentnode.character.item == antoniodoll:
+        print("Eric Carman says : \nThank you for getting my birthday present early! How can I repay you?")
+        print("I know, here take this CD, no charge!")
+        inv.append(faithcd)
+        clear_screen()
+        print("You have obtained Faith +1 CD")
+        print("I'm pretty sure token needs one, not too sure what he has to offer")
+        clear_screen()
+    elif currentnode.character == token and currentnode.character.item == faithcd:
+        print("Token says : \nGreat! Now I can listen to our best hits. Here take this as a \"Token\"")
+        clear_screen()
+        inv.append(bassguitar)
+        print("You take Tokens Bass Guitar")
+        clear_screen()
+        print("Haha! get it \"Token\". Nah I'm just kidding")
+        print("Find a house of light brown, and they may trade with you, the most prestigious of binders")
 
 
 # Items
@@ -278,9 +299,10 @@ cootiecatcher = Item("Cootie-Catcher", "A future telling device created by the g
 faithcd = Item("Faith +1 CD", "An album created by Eric Carman's christian rock band with Token and Budders")
 stickoftruth = Item("Stick Of Truth", "A mythical item that allows the holder to bring peace to all, said to be a "
                                       "legend")
-Wizzardhat = Item("Wizzard Hat", "An item that, when in possesion by Cartman, will give him special wizzard-like "
+wizzardhat = Item("Wizzard Hat", "An item that, when in possesion by Cartman, will give him special wizzard-like "
                                  "powers, like seeing R-rated movies without permission from his mom")
 bassguitar = Item("Bass Guitar", "A guitar famously used by Token while in the band Faith +1")
+
 
 # Characters
 
@@ -328,13 +350,13 @@ class Friendly(Character):
 
 you = Character("You", "You are wearing a white sleeveless coat and wearing a backwards baseball cap",
                 175, 20)
-cartman = Enemy("Eric Cartman", "a fat kid your age, wearing a red coat and a blue poofball hood",
-                125, 20)
+cartman = Friendly("Eric Cartman", "a fat kid your age, wearing a red coat and a blue poofball hood",
+                   125, 20)
 stan = Friendly("Stan Marsh", "a kid your age, wearing a brown coat with a blue hat", 100, 25)
 kyle = Friendly("Kyle Broflovski", "a kid your age wearing a green coat with an orange hat", 100, 30)
 kenny = Friendly("Kenny McCormick", "a kid your age wearing an orange coat with the hood covering most of his face",
                  85, 40)
-butters = Friendly("Butters Stotch", "a kid your age wearing a light-blue coat", 90, 25)
+butters = Enemy("Butters Stotch", "a kid your age wearing a light-blue coat", 90, 25)
 jimmy = Friendly("Jimmy Valmer", "a kid your age with crutches wearing a yellow shirt", 140, 40)
 craig = Friendly("Craig Tucker", "a kid your age weaing a blue coat, with a matching blue hood", 100, 30)
 clyde = Friendly("Clyde Donovan", "a kid your age wearing a red and blue coat", 100, 25)
@@ -463,6 +485,13 @@ while you.health > 0:
         if currentnode.character.health > 0:
             print("You see %s" % currentnode.character.name)
 
+    if currentnode.character == cartman:
+        if close == 0:
+            print("You hear Eric Cartman mumble something about his birthday present that his mom has\n"
+                  "He must really want it(*Hint*Hint*)")
+            clear_screen()
+            close += 1
+
     command = input(">_").lower().strip()
     clear_screen()
     if command == "quit":
@@ -577,6 +606,16 @@ while you.health > 0:
         print()
         print("\"Look\" : \nShows items in current room")
         clear_screen()
+
+    elif command == "give":
+        closealo = 0
+        if closealo == 0:
+            closealo += 1
+            print("*Hint* (Opening your inventory brings you to this same process) ")
+            clear_screen()
+            inventory()
+        else:
+            inventory()
 
     else:
         print("Command not recognized")
