@@ -11,10 +11,10 @@
 """
 import random
 
-
 inv = []
 
 close = 0
+
 
 def clear_screen():
     print("_________________________________________________________________________")
@@ -238,9 +238,6 @@ class Bow(Attack):
 class Sword(Attack):
     def __init__(self, name, description, stats, damage):
         super(Sword, self).__init__(name, description, stats, damage)
-
-    def stab(self):
-        print("You stab %s" % currentnode.character.name)
 
 
 class Shield(Defend):
